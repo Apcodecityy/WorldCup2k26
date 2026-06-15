@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FIFA World Cup 2026 - Full Match Schedule. USA, Canada & Mexico." />
+  <title>FIFA World Cup 2026 · Match Schedule</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Barlow Condensed for headers + Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      
+      
+        
+          
+          
+        
+          <span class="brand-title">World Cup</span>
+          <span class="brand-year">2026</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#schedule" class="nav-link active">Schedule</a>
+        <a href="#next-match" class="nav-link">Next Match</a>
+        <a href="rules.html" class="nav-link">Rules World Cup 2k26</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Dark / Light mode toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" aria-label="Tournament banner">
+    <div class="pitch-lines" aria-hidden="true">
+      <div class="pitch-line"></div>
+      <div class="pitch-circle"></div>
+      <div class="pitch-line"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">23rd FIFA World Cup · USA · Canada · Mexico</p>
+      <h1 class="hero-heading">
+        <span class="heading-big">World Cup</span>
+        <span class="heading-year">2026</span>
+      </h1>
+      <p class="hero-sub">11 June – 19 July &nbsp;·&nbsp; 48 Teams &nbsp;·&nbsp; 16 Host Cities</p>
+      <a href="rules.html" class="hero-rules-link">📖 Rules World Cup 2k26</a>
+    </div>
+  </section>
+
+  <!-- ========== NEXT MATCH  ========== -->
+  <section class="next-match-section" id="next-match" aria-label="Next upcoming match">
+    <div class="container">
+      <h2 class="section-label">⚡ Next Match</h2>
+      <div class="next-match-card" id="nextMatchCard">
+        <!-- Populated by JavaScript -->
+        <div class="loading-pulse">Loading next match…</div>
+      </div>
+      <!-- Live countdown -->
+      <div class="countdown-wrapper" id="countdownWrapper" aria-live="polite" aria-label="Countdown to next match">
+        <div class="countdown-unit" id="cd-days"><span class="cd-num">--</span><span class="cd-label">Days</span></div>
+        <div class="countdown-sep" aria-hidden="true">:</div>
+        <div class="countdown-unit" id="cd-hours"><span class="cd-num">--</span><span class="cd-label">Hours</span></div>
+        <div class="countdown-sep" aria-hidden="true">:</div>
+        <div class="countdown-unit" id="cd-minutes"><span class="cd-num">--</span><span class="cd-label">Min</span></div>
+        <div class="countdown-sep" aria-hidden="true">:</div>
+        <div class="countdown-unit" id="cd-seconds"><span class="cd-num">--</span><span class="cd-label">Sec</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FILTERS + SEARCH ========== -->
+  <section class="filters-section" id="schedule" aria-label="Filters and search">
+    <div class="container">
+      <div class="filters-bar">
+
+        <!-- Search -->
+        <div class="search-wrap">
+          <label for="searchInput" class="sr-only">Search teams or cities</label>
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search team or city…"
+            autocomplete="off"
+            aria-label="Search teams or cities"
+          />
+        </div>
+
+        <!-- Stage filter -->
+        <div class="filter-group">
+          <label for="stageFilter" class="filter-label">Stage</label>
+          <select id="stageFilter" class="filter-select" aria-label="Filter by stage">
+            <option value="all">All Stages</option>
+            <option value="Group Stage">Group Stage</option>
+            <option value="Round of 32">Round of 32</option>
+            <option value="Round of 16">Round of 16</option>
+            <option value="Quarter-finals">Quarter-finals</option>
+            <option value="Semi-finals">Semi-finals</option>
+            <option value="Third Place Match">Third Place Match</option>
+            <option value="Final">Final</option>
+          </select>
+        </div>
+
+        <!-- Group filter -->
+        <div class="filter-group">
+          <label for="groupFilter" class="filter-label">Group</label>
+          <select id="groupFilter" class="filter-select" aria-label="Filter by group">
+            <option value="all">All Groups</option>
+            <option value="A">Group A</option>
+            <option value="B">Group B</option>
+            <option value="C">Group C</option>
+            <option value="D">Group D</option>
+            <option value="E">Group E</option>
+            <option value="F">Group F</option>
+            <option value="G">Group G</option>
+            <option value="H">Group H</option>
+            <option value="I">Group I</option>
+            <option value="J">Group J</option>
+            <option value="K">Group K</option>
+            <option value="L">Group L</option>
+          </select>
+        </div>
+
+        <!-- Status filter -->
+        <div class="filter-group">
+          <label for="statusFilter" class="filter-label">Status</label>
+          <select id="statusFilter" class="filter-select" aria-label="Filter by match status">
+            <option value="all">All Matches</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="finished">Full Time</option>
+          </select>
+        </div>
+
+        <!-- Date filter -->
+        <div class="filter-group">
+          <label for="dateFilter" class="filter-label">Date</label>
+          <input type="date" id="dateFilter" class="filter-select filter-date" aria-label="Filter by date" />
+        </div>
+
+        <!-- Reset -->
+        <button class="btn-reset" id="resetFilters" aria-label="Clear all filters">✕ Clear</button>
+
+      </div>
+
+      <!-- Results count -->
+      <p class="results-info" id="resultsInfo" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ========== MATCH CARDS GRID ========== -->
+  <main class="schedule-section" aria-label="Match schedule">
+    <div class="container">
+      <div class="standings-wrap hidden" id="standingsWrap" aria-label="Group standings">
+        <h2 class="section-label" id="standingsTitle">Group Standings</h2>
+        <div class="standings-table-scroll">
+          <table class="standings-table" id="standingsTable">
+            <thead>
+              <tr>
+                <th class="st-pos">#</th>
+                <th class="st-team">Team</th>
+                <th class="st-pts">Pts</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+              </tr>
+            </thead>
+            <tbody id="standingsBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="matches-grid" id="matchesGrid" role="list">
+        <!-- Cards injected by JavaScript -->
+      </div>
+      <div class="no-results hidden" id="noResults" role="alert">
+        <span class="no-results-icon">⚽</span>
+        <p>No matches found for your filters.</p>
+        <button class="btn-reset" id="noResultsReset">Clear filters</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about-section" id="about" aria-label="About the tournament">
+    <div class="container about-grid">
+      <div class="about-stat">
+        <span class="about-num">48</span>
+        <span class="about-desc">Nations competing</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-num">104</span>
+        <span class="about-desc">Total matches</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-num">16</span>
+        <span class="about-desc">Host cities</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-num">3</span>
+        <span class="about-desc">Host countries</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-title">⚽ WC2026 Schedule BY Aditya Pradana</span>
+        <p class="footer-desc">Unofficial fan schedule tracker for FIFA World Cup 2026. All times shown in Waktu Indonesia Tengah (WITA).</p>
+        <p class="footer-updated">Last updated: <span id="lastUpdated">—</span></p>
+      </div>
+      <div class="footer-links">
+        <p class="footer-links-heading">Follow along</p>
+        <ul class="social-links">
+          <li><a href="#" class="https://www.instagram.com/aditprad4na/" target="_blank" rel="noopener noreferrer" class="social-link"  aria-label="Instagram">📸 Instagram</a></li>
+          <li><a href="https://www.fifa.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Official FIFA Website">🌐 FIFA.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 WC Schedule Fan Site · Not affiliated with FIFA</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
