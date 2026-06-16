@@ -355,8 +355,8 @@
       "city": "Seattle",
       "country": "USA",
       "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": 15,
@@ -380,8 +380,8 @@
       "city": "Miami",
       "country": "USA",
       "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": 16,
