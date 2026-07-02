@@ -162,9 +162,6 @@ img { display: block; max-width: 100%; }
 .nav-link.active { color: var(--accent); }
 
 /* Theme toggle */
-.header-actions { display: flex; align-items: center; gap: 8px; }
-.home-btn { text-decoration: none; }
-.home-btn:hover { text-decoration: none; }
 .theme-toggle {
   background: var(--bg-card);
   border: 1px solid var(--border);
