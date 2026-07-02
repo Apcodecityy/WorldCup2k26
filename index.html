@@ -12,25 +12,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts: Barlow Condensed for headers + Inter for body -->
+  <!-- Google Fonts: Space Grotesk (display) + Inter (body) + JetBrains Mono (live scores/countdown) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- ========== HEADER / NAV ========== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
-      
-      
-        
-          
-          
-        
-          <span class="brand-title">World Cup</span>
-          <span class="brand-year">2026</span>
-        </div>
+      <div class="brand">
+        <span class="brand-title">World Cup</span>
+        <span class="brand-year">2026</span>
       </div>
 
       <nav class="nav-links" aria-label="Main navigation">
@@ -81,7 +75,7 @@
   </section>
 
   <!-- ========== NEXT MATCH  ========== -->
-  <section class="next-match-section" id="next-match" aria-label="Next upcoming match">
+  <section class="next-match-section reveal" id="next-match" aria-label="Next upcoming match">
     <div class="container">
       <h2 class="section-label">⚡ Next Match</h2>
       <div class="next-match-card" id="nextMatchCard">
@@ -102,7 +96,7 @@
   </section>
 
   <!-- ========== FILTERS + SEARCH ========== -->
-  <section class="filters-section" id="schedule" aria-label="Filters and search">
+  <section class="filters-section reveal" id="schedule" aria-label="Filters and search">
     <div class="container">
       <div class="filters-bar">
 
@@ -182,7 +176,7 @@
   </section>
 
   <!-- ========== MATCH CARDS GRID ========== -->
-  <main class="schedule-section" aria-label="Match schedule">
+  <main class="schedule-section reveal" aria-label="Match schedule">
     <div class="container">
       <div class="standings-wrap hidden" id="standingsWrap" aria-label="Group standings">
         <h2 class="section-label" id="standingsTitle">Group Standings</h2>
@@ -220,7 +214,7 @@
   </main>
 
   <!-- ========== ABOUT ========== -->
-  <section class="about-section" id="about" aria-label="About the tournament">
+  <section class="about-section reveal" id="about" aria-label="About the tournament">
     <div class="container about-grid">
       <div class="about-stat">
         <span class="about-num">48</span>
@@ -252,7 +246,7 @@
       <div class="footer-links">
         <p class="footer-links-heading">Follow along</p>
         <ul class="social-links">
-          <li><a href="#" class="https://www.instagram.com/aditprad4na/" target="_blank" rel="noopener noreferrer" class="social-link"  aria-label="Instagram">📸 Instagram</a></li>
+          <li><a href="https://www.instagram.com/aditprad4na/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">📸 Instagram</a></li>
           <li><a href="https://www.fifa.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Official FIFA Website">🌐 FIFA.com</a></li>
         </ul>
       </div>
@@ -260,6 +254,7 @@
     <p class="footer-copy">© 2026 WC Schedule Fan Site · Not affiliated with FIFA</p>
   </footer>
 
+  <script src="matches-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

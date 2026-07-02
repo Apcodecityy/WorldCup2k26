@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTheme();
   fetchMatches();
   startLiveScorePolling();
+  initRevealObserver();
   themeToggle.addEventListener('click', toggleTheme);
   searchInput.addEventListener('input', applyFilters);
   stageFilter.addEventListener('change', applyFilters);
@@ -53,6 +54,34 @@ document.addEventListener('DOMContentLoaded', () => {
   resetBtn.addEventListener('click', clearFilters);
   noResultsReset.addEventListener('click', clearFilters);
 });
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────────────
+/**
+ * Fades/slides .reveal sections into view as they enter the viewport
+ * (see .reveal / .reveal.is-visible in style.css). Without this, sections
+ * marked "reveal" stay permanently at opacity:0 and never appear.
+ */
+function initRevealObserver() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    // Fallback for very old browsers: just show everything immediately.
+    revealEls.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+}
 
 // ── LIVE SCORES (via /api/livescore, proxying football-data.org) ───────────
 /**
@@ -142,9 +171,16 @@ function formatStageLabel(stage) {
  */
 async function fetchMatches() {
   try {
-    const res = await fetch('matches.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    // Prefer the embedded copy (matches-data.js) — this makes the page work
+    // even when opened directly from disk (file://), where fetch() is
+    // blocked by CORS. Falls back to fetch('matches.json') for setups that
+    // don't load matches-data.js (e.g. a server where fetch works fine).
+    let data = window.__MATCHES_DATA__;
+    if (!data) {
+      const res = await fetch('matches.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      data = await res.json();
+    }
 
     allMatches = data.matches.map(enrichMatch);
     allStandings = data.standings || {};

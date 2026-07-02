@@ -24,4 +24,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadTheme();
   themeToggle.addEventListener('click', toggleTheme);
+  initRevealObserver();
 });
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────────────
+/**
+ * Fades/slides .reveal elements into view as they enter the viewport
+ * (see .reveal / .reveal.is-visible in style.css). Without this, elements
+ * marked "reveal" stay permanently at opacity:0 and never appear.
+ */
+function initRevealObserver() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+}

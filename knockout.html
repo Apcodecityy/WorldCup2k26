@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     .ko-section { padding: 24px 0 64px; }
 
@@ -152,7 +152,7 @@
       overflow: hidden;
       transition: border-color var(--transition), background var(--transition), transform var(--transition);
     }
-    .bk-match:hover { border-color: var(--accent); background: var(--bg-card-hover); transform: translateY(-1px); }
+    .bk-match:hover { border-color: var(--accent); background: var(--bg-card-hover); transform: translateY(-1px); box-shadow: 0 0 18px var(--accent-glow); }
     .bk-match.is-final { border-color: var(--gold); box-shadow: 0 0 20px var(--gold-glow); }
 
     .bk-row {
@@ -166,16 +166,16 @@
       line-height: 1.2;
     }
     .bk-row + .bk-row { border-top: 1px solid var(--border-subtle); }
-    .bk-row.winner { color: var(--text); font-weight: 700; background: rgba(202,218,31,.07); }
+    .bk-row.winner { color: var(--text); font-weight: 700; background: var(--accent-glow); }
     .bk-row.loser  { opacity: .5; }
     .bk-row.tbd    { color: var(--text-dimmer); font-style: italic; }
 
     .bk-flag  { font-size: 14px; flex-shrink: 0; width: 18px; }
     .bk-name  { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .bk-score {
-      font-family: var(--font-display);
+      font-family: var(--font-mono);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--text-dimmer);
       min-width: 14px;
       text-align: right;
@@ -211,7 +211,7 @@
     }
     .bk-pen {
       display: block;
-      background: rgba(202,218,31,.15);
+      background: var(--accent-glow);
       color: var(--accent);
       border-radius: 3px;
       padding: 2px 6px;
@@ -246,6 +246,11 @@
       border-radius: var(--radius);
       box-shadow: 0 0 40px var(--gold-glow);
       width: 100%;
+      animation: champion-pulse 3s ease-in-out infinite;
+    }
+    @keyframes champion-pulse {
+      0%, 100% { box-shadow: 0 0 40px var(--gold-glow); }
+      50%      { box-shadow: 0 0 60px var(--gold-glow); }
     }
     .ko-champion-trophy { font-size: 40px; margin-bottom: 6px; }
     .ko-champion-label {
@@ -353,6 +358,7 @@
     <p class="footer-copy">© 2026 WC Schedule Fan Site · Not affiliated with FIFA</p>
   </footer>
 
+  <script src="matches-data.js"></script>
   <script>
     // Theme
     const themeToggle = document.getElementById('themeToggle');
@@ -471,7 +477,7 @@
       // Penalty note
       const hasPens = done && ph != null && pa != null && hs === as_;
       const penBadge = hasPens
-        ? `<span class="bk-pen">🥅 On penalty ${ph}–${pa}</span>`
+        ? `<span class="bk-pen">🥅 Menang adu penalti ${ph}–${pa}</span>`
         : '';
 
       const cardCls = 'bk-match' + (isFinal ? ' is-final' : '');
@@ -515,8 +521,13 @@
     async function loadBracket() {
       const container = document.getElementById('bracketContainer');
       try {
-        const res = await fetch('matches.json');
-        const data = await res.json();
+        // Prefer embedded data (matches-data.js) so this works when the file
+        // is opened directly from disk, where fetch() is blocked by CORS.
+        let data = window.__MATCHES_DATA__;
+        if (!data) {
+          const res = await fetch('matches.json');
+          data = await res.json();
+        }
 
         const rawById = {};
         data.matches.forEach(m => { rawById[m.id] = m; });
