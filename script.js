@@ -61,7 +61,7 @@ async function fetchMatches() {
     const data = await res.json();
 
     allMatches = data.matches.map(enrichMatch);
-    allStandings = computeStandings(allMatches);
+    allStandings = data.standings || {};
 
     // Show last-updated date from JSON
     if (data.lastUpdated && lastUpdated) {
@@ -78,74 +78,6 @@ async function fetchMatches() {
         <p style="margin-top:8px;font-size:13px;">${err.message}</p>
       </div>`;
   }
-}
-
-// ── COMPUTE STANDINGS FROM MATCH RESULTS ────────────────────────────────────
-/**
- * Calculates group standings dynamically from match data.
- * Called every time matches.json is loaded — no need to manually
- * update the "standings" section in matches.json anymore.
- */
-function computeStandings(matches) {
-  const groups = {};
-
-  // Initialize all teams from group-stage matches
-  matches.forEach(m => {
-    if (m.stage !== 'Group Stage' || !m.group) return;
-    const g = m.group;
-    if (!groups[g]) groups[g] = {};
-
-    [m.homeTeam, m.awayTeam].forEach(t => {
-      if (!groups[g][t.code]) {
-        groups[g][t.code] = {
-          name: t.name, code: t.code, flag: t.flag,
-          played: 0, won: 0, drawn: 0, lost: 0,
-          gf: 0, ga: 0, gd: 0, points: 0
-        };
-      }
-    });
-  });
-
-  // Tally results from completed matches
-  matches.forEach(m => {
-    if (m.stage !== 'Group Stage' || !m.group) return;
-    if (m.status !== 'finished' && m.status !== 'completed') return;
-    if (typeof m.homeScore !== 'number' || typeof m.awayScore !== 'number') return;
-
-    const g = m.group;
-    const th = groups[g][m.homeTeam.code];
-    const ta = groups[g][m.awayTeam.code];
-    if (!th || !ta) return;
-
-    const hs = m.homeScore, as_ = m.awayScore;
-    th.played++; ta.played++;
-    th.gf += hs; th.ga += as_;
-    ta.gf += as_; ta.ga += hs;
-
-    if (hs > as_) {
-      th.won++; th.points += 3; ta.lost++;
-    } else if (hs < as_) {
-      ta.won++; ta.points += 3; th.lost++;
-    } else {
-      th.drawn++; ta.drawn++;
-      th.points++; ta.points++;
-    }
-  });
-
-  // Compute GD and sort each group: pts → gd → gf → name
-  const standings = {};
-  Object.entries(groups).forEach(([g, teams]) => {
-    standings[g] = Object.values(teams)
-      .map(t => ({ ...t, gd: t.gf - t.ga }))
-      .sort((a, b) =>
-        b.points - a.points ||
-        b.gd - a.gd ||
-        b.gf - a.gf ||
-        a.name.localeCompare(b.name)
-      );
-  });
-
-  return standings;
 }
 
 // ── ENRICH MATCH ───────────────────────────────────────────────────────────

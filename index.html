@@ -22,25 +22,24 @@
   <!-- ========== HEADER / NAV ========== -->
   <header class="site-header" role="banner">
     <div class="header-inner">
-      
-      
-        
-          
-          
-        
-          <span class="brand-title">World Cup</span>
-          <span class="brand-year">2026</span>
-        </div>
+      <div class="brand">
+        <span class="brand-title">World Cup</span>
+        <span class="brand-year">2026</span>
       </div>
 
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#schedule" class="nav-link active">Schedule</a>
         <a href="#next-match" class="nav-link">Next Match</a>
         <a href="rules.html" class="nav-link">Rules World Cup 2k26</a>
+        <a href="knockout.html" class="nav-link">Knockout Stages</a>
         <a href="#about" class="nav-link">About</a>
       </nav>
 
       <div class="header-actions">
+        <!-- Home button -->
+        <a href="index.html" class="theme-toggle home-btn" id="homeBtn" aria-label="Kembali ke halaman utama" title="Home">
+          <span class="theme-icon">🏠</span>
+        </a>
         <!-- Dark / Light mode toggle -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">
           <span class="theme-icon" id="themeIcon">🌙</span>
@@ -64,6 +63,7 @@
       </h1>
       <p class="hero-sub">11 June – 19 July &nbsp;·&nbsp; 48 Teams &nbsp;·&nbsp; 16 Host Cities</p>
       <a href="rules.html" class="hero-rules-link">📖 Rules World Cup 2k26</a>
+      <a href="knockout.html" class="hero-rules-link hero-ko-link">🏆 Knockout Stages</a>
     </div>
   </section>
 
@@ -144,7 +144,7 @@
 
         <!-- Status filter -->
         <div class="filter-group">
-          <label for="statusFilter" class="filter-label">Status Match</label>
+          <label for="statusFilter" class="filter-label">Status</label>
           <select id="statusFilter" class="filter-select" aria-label="Filter by match status">
             <option value="all">All Matches</option>
             <option value="upcoming">Upcoming</option>
@@ -244,9 +244,9 @@
         </ul>
       </div>
     </div>
-    <p class="footer-copy">© 2026 WC Schedule By APcodespace · Not affiliated with FIFA</p>
-     <p class="footer-copy">© Aditya Pradana</p>
+    <p class="footer-copy">© 2026 WC Schedule Fan Site · Not affiliated with FIFA</p>
   </footer>
-  <script src="script.js?v=2"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     "Canada",
     "Mexico"
   ],
-  "lastUpdated": "2026-06-16",
+  "lastUpdated": "2026-07-02",
   "matches": [
     {
       "id": 1,
@@ -329,7 +329,7 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
+      "status": "completed",
       "homeScore": 0,
       "awayScore": 0
     },
@@ -354,7 +354,7 @@
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
+      "status": "completed",
       "homeScore": 1,
       "awayScore": 1
     },
@@ -379,7 +379,7 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
+      "status": "completed",
       "homeScore": 1,
       "awayScore": 1
     },
@@ -404,7 +404,7 @@
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
+      "status": "completed",
       "homeScore": 2,
       "awayScore": 2
     },
@@ -429,9 +429,9 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 18,
@@ -454,9 +454,9 @@
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 1
     },
     {
       "id": 19,
@@ -479,9 +479,9 @@
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 20,
@@ -504,9 +504,9 @@
       "stadium": "Levi's Stadium",
       "city": "San Francisco Bay Area",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 21,
@@ -529,9 +529,9 @@
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": 22,
@@ -554,9 +554,9 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 2
     },
     {
       "id": 23,
@@ -579,9 +579,9 @@
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 0
     },
     {
       "id": 24,
@@ -604,9 +604,9 @@
       "stadium": "Estadio Azteca",
       "city": "Mexico City",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 25,
@@ -629,9 +629,7 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 26,
@@ -654,9 +652,9 @@
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 1
     },
     {
       "id": 27,
@@ -679,9 +677,9 @@
       "stadium": "BC Place",
       "city": "Vancouver",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 0
     },
     {
       "id": 28,
@@ -704,9 +702,9 @@
       "stadium": "Estadio Akron",
       "city": "Guadalajara/Zapopan",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 0
     },
     {
       "id": 29,
@@ -729,9 +727,9 @@
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 0
     },
     {
       "id": 30,
@@ -754,9 +752,9 @@
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 1
     },
     {
       "id": 31,
@@ -779,9 +777,9 @@
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 32,
@@ -804,9 +802,7 @@
       "stadium": "Levi's Stadium",
       "city": "San Francisco Bay Area",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 33,
@@ -829,9 +825,9 @@
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 5,
+      "awayScore": 1
     },
     {
       "id": 34,
@@ -854,9 +850,9 @@
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 1
     },
     {
       "id": 35,
@@ -879,9 +875,9 @@
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 36,
@@ -904,9 +900,7 @@
       "stadium": "Estadio BBVA",
       "city": "Monterrey/Guadalupe",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 37,
@@ -929,9 +923,9 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 0
     },
     {
       "id": 38,
@@ -954,9 +948,9 @@
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 39,
@@ -979,9 +973,9 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 2
     },
     {
       "id": 40,
@@ -1004,9 +998,7 @@
       "stadium": "BC Place",
       "city": "Vancouver",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 41,
@@ -1029,9 +1021,9 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 0
     },
     {
       "id": 42,
@@ -1054,9 +1046,9 @@
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 43,
@@ -1079,9 +1071,9 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 44,
@@ -1104,9 +1096,9 @@
       "stadium": "Levi's Stadium",
       "city": "San Francisco Bay Area",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 2
     },
     {
       "id": 45,
@@ -1129,9 +1121,9 @@
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 5,
+      "awayScore": 0
     },
     {
       "id": 46,
@@ -1154,9 +1146,9 @@
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 47,
@@ -1179,9 +1171,9 @@
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 1
     },
     {
       "id": 48,
@@ -1204,9 +1196,9 @@
       "stadium": "Estadio Akron",
       "city": "Guadalajara/Zapopan",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 0
     },
     {
       "id": 49,
@@ -1229,9 +1221,9 @@
       "stadium": "BC Place",
       "city": "Vancouver",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 2
     },
     {
       "id": 50,
@@ -1254,9 +1246,9 @@
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 51,
@@ -1279,9 +1271,9 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 52,
@@ -1304,9 +1296,9 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 2
     },
     {
       "id": 53,
@@ -1329,9 +1321,9 @@
       "stadium": "Estadio Azteca",
       "city": "Mexico City",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 54,
@@ -1354,9 +1346,7 @@
       "stadium": "Estadio BBVA",
       "city": "Monterrey/Guadalupe",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 55,
@@ -1379,9 +1369,9 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 1
     },
     {
       "id": 56,
@@ -1404,9 +1394,9 @@
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 2
     },
     {
       "id": 57,
@@ -1429,9 +1419,7 @@
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 58,
@@ -1454,9 +1442,9 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": 59,
@@ -1479,9 +1467,7 @@
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 60,
@@ -1504,9 +1490,9 @@
       "stadium": "Levi's Stadium",
       "city": "San Francisco Bay Area",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 61,
@@ -1529,9 +1515,9 @@
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 4,
+      "awayScore": 1
     },
     {
       "id": 62,
@@ -1554,9 +1540,9 @@
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 5,
+      "awayScore": 0
     },
     {
       "id": 63,
@@ -1579,9 +1565,9 @@
       "stadium": "Estadio Akron",
       "city": "Guadalajara/Zapopan",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 1
     },
     {
       "id": 64,
@@ -1604,9 +1590,9 @@
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 65,
@@ -1629,9 +1615,7 @@
       "stadium": "BC Place",
       "city": "Vancouver",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 66,
@@ -1654,9 +1638,9 @@
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": 67,
@@ -1679,9 +1663,7 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 68,
@@ -1704,9 +1686,9 @@
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 1
     },
     {
       "id": 69,
@@ -1729,9 +1711,9 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 0,
+      "awayScore": 0
     },
     {
       "id": 70,
@@ -1754,9 +1736,7 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 71,
@@ -1779,9 +1759,7 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 72,
@@ -1804,9 +1782,7 @@
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 73,
@@ -1817,21 +1793,21 @@
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "2A",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Canada",
+        "code": "CAN",
+        "flag": "🇨🇦"
       },
       "awayTeam": {
-        "name": "2B",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "South Africa",
+        "code": "RSA",
+        "flag": "🇿🇦"
       },
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 0
     },
     {
       "id": 74,
@@ -1842,21 +1818,21 @@
       "time": "01:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1C",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷"
       },
       "awayTeam": {
-        "name": "2F",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Japan",
+        "code": "JPN",
+        "flag": "🇯🇵"
       },
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 1
     },
     {
       "id": 75,
@@ -1864,52 +1840,28 @@
       "group": null,
       "matchday": null,
       "date": "2026-06-30",
-      "time": "04:30",
+      "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1E",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Germany",
+        "code": "GER",
+        "flag": "🇩🇪"
       },
       "awayTeam": {
-        "name": "3ABCDF",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Paraguay",
+        "code": "PAR",
+        "flag": "🇵🇾"
       },
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 1,
+      "note": "Paraguay win 4-3 pens"
     },
     {
       "id": 76,
-      "stage": "Round of 32",
-      "group": null,
-      "matchday": null,
-      "date": "2026-06-30",
-      "time": "09:00",
-      "timezone": "WITA",
-      "homeTeam": {
-        "name": "1F",
-        "code": "TBD",
-        "flag": "🏳️"
-      },
-      "awayTeam": {
-        "name": "2C",
-        "code": "TBD",
-        "flag": "🏳️"
-      },
-      "stadium": "Estadio BBVA",
-      "city": "Monterrey/Guadalupe",
-      "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": 77,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -1917,24 +1869,25 @@
       "time": "01:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "2E",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Netherlands",
+        "code": "NED",
+        "flag": "🇳🇱"
       },
       "awayTeam": {
-        "name": "2I",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦"
       },
-      "stadium": "AT&T Stadium",
-      "city": "Dallas",
-      "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "stadium": "Estadio BBVA",
+      "city": "Monterrey",
+      "country": "Mexico",
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 1,
+      "note": "Morocco win 3-2 pens"
     },
     {
-      "id": 78,
+      "id": 77,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -1942,24 +1895,24 @@
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1I",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Ivory Coast",
+        "code": "CIV",
+        "flag": "🇨🇮"
       },
       "awayTeam": {
-        "name": "3CDFGH",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Norway",
+        "code": "NOR",
+        "flag": "🇳🇴"
       },
-      "stadium": "MetLife Stadium",
-      "city": "New York/New Jersey",
+      "stadium": "AT&T Stadium",
+      "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 1,
+      "awayScore": 2
     },
     {
-      "id": 79,
+      "id": 78,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -1967,21 +1920,46 @@
       "time": "09:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1A",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "France",
+        "code": "FRA",
+        "flag": "🇫🇷"
       },
       "awayTeam": {
-        "name": "3CEFHI",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Sweden",
+        "code": "SWE",
+        "flag": "🇸🇪"
+      },
+      "stadium": "MetLife Stadium",
+      "city": "New York",
+      "country": "USA",
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 0
+    },
+    {
+      "id": 79,
+      "stage": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "date": "2026-07-02",
+      "time": "01:00",
+      "timezone": "WITA",
+      "homeTeam": {
+        "name": "Mexico",
+        "code": "MEX",
+        "flag": "🇲🇽"
+      },
+      "awayTeam": {
+        "name": "Ecuador",
+        "code": "ECU",
+        "flag": "🇪🇨"
       },
       "stadium": "Estadio Azteca",
       "city": "Mexico City",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 0
     },
     {
       "id": 80,
@@ -1989,24 +1967,24 @@
       "group": null,
       "matchday": null,
       "date": "2026-07-02",
-      "time": "00:00",
+      "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1L",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "England",
+        "code": "ENG",
+        "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
       },
       "awayTeam": {
-        "name": "3EHIJK",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "DR Congo",
+        "code": "COD",
+        "flag": "🇨🇩"
       },
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 2,
+      "awayScore": 1
     },
     {
       "id": 81,
@@ -2014,24 +1992,25 @@
       "group": null,
       "matchday": null,
       "date": "2026-07-02",
-      "time": "04:00",
+      "time": "09:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1G",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Belgium",
+        "code": "BEL",
+        "flag": "🇧🇪"
       },
       "awayTeam": {
-        "name": "3AEHIJ",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Senegal",
+        "code": "SEN",
+        "flag": "🇸🇳"
       },
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "completed",
+      "homeScore": 3,
+      "awayScore": 2,
+      "note": "AET"
     },
     {
       "id": 82,
@@ -2042,14 +2021,14 @@
       "time": "08:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1D",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "USA",
+        "code": "USA",
+        "flag": "🇺🇸"
       },
       "awayTeam": {
-        "name": "3BEFIJ",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Bosnia and Herzegovina",
+        "code": "BIH",
+        "flag": "🇧🇦"
       },
       "stadium": "Levi's Stadium",
       "city": "San Francisco Bay Area",
@@ -2067,14 +2046,14 @@
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1H",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Spain",
+        "code": "ESP",
+        "flag": "🇪🇸"
       },
       "awayTeam": {
-        "name": "2J",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Austria",
+        "code": "AUT",
+        "flag": "🇦🇹"
       },
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
@@ -2092,14 +2071,14 @@
       "time": "07:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "2K",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Portugal",
+        "code": "POR",
+        "flag": "🇵🇹"
       },
       "awayTeam": {
-        "name": "2L",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Croatia",
+        "code": "CRO",
+        "flag": "🇭🇷"
       },
       "stadium": "BMO Field",
       "city": "Toronto",
@@ -2117,14 +2096,14 @@
       "time": "11:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1B",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Switzerland",
+        "code": "SUI",
+        "flag": "🇨🇭"
       },
       "awayTeam": {
-        "name": "3DEIJL",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Algeria",
+        "code": "ALG",
+        "flag": "🇩🇿"
       },
       "stadium": "BC Place",
       "city": "Vancouver",
@@ -2142,14 +2121,14 @@
       "time": "02:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "2D",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Australia",
+        "code": "AUS",
+        "flag": "🇦🇺"
       },
       "awayTeam": {
-        "name": "2G",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Egypt",
+        "code": "EGY",
+        "flag": "🇪🇬"
       },
       "stadium": "AT&T Stadium",
       "city": "Dallas",
@@ -2167,14 +2146,14 @@
       "time": "06:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1J",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Argentina",
+        "code": "ARG",
+        "flag": "🇦🇷"
       },
       "awayTeam": {
-        "name": "2H",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Cape Verde",
+        "code": "CPV",
+        "flag": "🇨🇻"
       },
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
@@ -2192,14 +2171,14 @@
       "time": "09:30",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "1K",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Colombia",
+        "code": "COL",
+        "flag": "🇨🇴"
       },
       "awayTeam": {
-        "name": "3DEIJL",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Ghana",
+        "code": "GHA",
+        "flag": "🇬🇭"
       },
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
@@ -2229,9 +2208,7 @@
       "stadium": "NRG Stadium",
       "city": "Houston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 90,
@@ -2254,9 +2231,7 @@
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 91,
@@ -2279,9 +2254,7 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 92,
@@ -2304,9 +2277,7 @@
       "stadium": "Estadio Azteca",
       "city": "Mexico City",
       "country": "Mexico",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 93,
@@ -2329,9 +2300,7 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 94,
@@ -2354,9 +2323,7 @@
       "stadium": "Lumen Field",
       "city": "Seattle",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 95,
@@ -2379,9 +2346,7 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 96,
@@ -2404,9 +2369,7 @@
       "stadium": "BC Place",
       "city": "Vancouver",
       "country": "Canada",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 97,
@@ -2429,9 +2392,7 @@
       "stadium": "Gillette Stadium",
       "city": "Boston",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 98,
@@ -2454,9 +2415,7 @@
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 99,
@@ -2479,9 +2438,7 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 100,
@@ -2504,9 +2461,7 @@
       "stadium": "Arrowhead Stadium",
       "city": "Kansas City",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 101,
@@ -2529,9 +2484,7 @@
       "stadium": "AT&T Stadium",
       "city": "Dallas",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 102,
@@ -2554,9 +2507,7 @@
       "stadium": "Mercedes-Benz Stadium",
       "city": "Atlanta",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 103,
@@ -2579,9 +2530,7 @@
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     },
     {
       "id": 104,
@@ -2604,659 +2553,773 @@
       "stadium": "MetLife Stadium",
       "city": "New York/New Jersey",
       "country": "USA",
-      "status": "upcoming",
-      "homeScore": null,
-      "awayScore": null
+      "status": "upcoming"
     }
   ],
-  "standings": {
-    "A": [
+  "bracket": {
+    "r32": [
       {
-        "name": "Mexico",
-        "code": "MEX",
-        "flag": "🇲🇽",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 2,
-        "ga": 0,
-        "gd": 2,
-        "points": 3
+        "id": 73,
+        "home": {
+          "name": "Canada",
+          "code": "CAN",
+          "flag": "🇨🇦"
+        },
+        "away": {
+          "name": "South Africa",
+          "code": "RSA",
+          "flag": "🇿🇦"
+        },
+        "homeScore": 1,
+        "awayScore": 0,
+        "status": "completed",
+        "date": "2026-06-29",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "Canada",
+          "code": "CAN",
+          "flag": "🇨🇦"
+        }
       },
       {
-        "name": "South Korea",
-        "code": "KOR",
-        "flag": "🇰🇷",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 2,
-        "ga": 1,
-        "gd": 1,
-        "points": 3
+        "id": 74,
+        "home": {
+          "name": "Brazil",
+          "code": "BRA",
+          "flag": "🇧🇷"
+        },
+        "away": {
+          "name": "Japan",
+          "code": "JPN",
+          "flag": "🇯🇵"
+        },
+        "homeScore": 2,
+        "awayScore": 1,
+        "status": "completed",
+        "date": "2026-06-30",
+        "time": "01:00",
+        "note": null,
+        "winner": {
+          "name": "Brazil",
+          "code": "BRA",
+          "flag": "🇧🇷"
+        }
       },
       {
-        "name": "Czechia",
-        "code": "CZE",
-        "flag": "🇨🇿",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 1,
-        "ga": 2,
-        "gd": -1,
-        "points": 0
+        "id": 75,
+        "home": {
+          "name": "Germany",
+          "code": "GER",
+          "flag": "🇩🇪"
+        },
+        "away": {
+          "name": "Paraguay",
+          "code": "PAR",
+          "flag": "🇵🇾"
+        },
+        "homeScore": 1,
+        "awayScore": 1,
+        "status": "completed",
+        "date": "2026-06-30",
+        "time": "05:00",
+        "note": "Paraguay win 4-3 pens",
+        "winner": {
+          "name": "Paraguay",
+          "code": "PAR",
+          "flag": "🇵🇾"
+        }
       },
       {
-        "name": "South Africa",
-        "code": "RSA",
-        "flag": "🇿🇦",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 0,
-        "ga": 2,
-        "gd": -2,
-        "points": 0
+        "id": 76,
+        "home": {
+          "name": "Netherlands",
+          "code": "NED",
+          "flag": "🇳🇱"
+        },
+        "away": {
+          "name": "Morocco",
+          "code": "MAR",
+          "flag": "🇲🇦"
+        },
+        "homeScore": 1,
+        "awayScore": 1,
+        "status": "completed",
+        "date": "2026-07-01",
+        "time": "01:00",
+        "note": "Morocco win 3-2 pens",
+        "winner": {
+          "name": "Morocco",
+          "code": "MAR",
+          "flag": "🇲🇦"
+        }
+      },
+      {
+        "id": 77,
+        "home": {
+          "name": "Ivory Coast",
+          "code": "CIV",
+          "flag": "🇨🇮"
+        },
+        "away": {
+          "name": "Norway",
+          "code": "NOR",
+          "flag": "🇳🇴"
+        },
+        "homeScore": 1,
+        "awayScore": 2,
+        "status": "completed",
+        "date": "2026-07-01",
+        "time": "05:00",
+        "note": null,
+        "winner": {
+          "name": "Norway",
+          "code": "NOR",
+          "flag": "🇳🇴"
+        }
+      },
+      {
+        "id": 78,
+        "home": {
+          "name": "France",
+          "code": "FRA",
+          "flag": "🇫🇷"
+        },
+        "away": {
+          "name": "Sweden",
+          "code": "SWE",
+          "flag": "🇸🇪"
+        },
+        "homeScore": 3,
+        "awayScore": 0,
+        "status": "completed",
+        "date": "2026-07-01",
+        "time": "09:00",
+        "note": null,
+        "winner": {
+          "name": "France",
+          "code": "FRA",
+          "flag": "🇫🇷"
+        }
+      },
+      {
+        "id": 79,
+        "home": {
+          "name": "Mexico",
+          "code": "MEX",
+          "flag": "🇲🇽"
+        },
+        "away": {
+          "name": "Ecuador",
+          "code": "ECU",
+          "flag": "🇪🇨"
+        },
+        "homeScore": 2,
+        "awayScore": 0,
+        "status": "completed",
+        "date": "2026-07-02",
+        "time": "01:00",
+        "note": null,
+        "winner": {
+          "name": "Mexico",
+          "code": "MEX",
+          "flag": "🇲🇽"
+        }
+      },
+      {
+        "id": 80,
+        "home": {
+          "name": "England",
+          "code": "ENG",
+          "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        },
+        "away": {
+          "name": "DR Congo",
+          "code": "COD",
+          "flag": "🇨🇩"
+        },
+        "homeScore": 2,
+        "awayScore": 1,
+        "status": "completed",
+        "date": "2026-07-02",
+        "time": "05:00",
+        "note": null,
+        "winner": {
+          "name": "England",
+          "code": "ENG",
+          "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        }
+      },
+      {
+        "id": 81,
+        "home": {
+          "name": "Belgium",
+          "code": "BEL",
+          "flag": "🇧🇪"
+        },
+        "away": {
+          "name": "Senegal",
+          "code": "SEN",
+          "flag": "🇸🇳"
+        },
+        "homeScore": 3,
+        "awayScore": 2,
+        "status": "completed",
+        "date": "2026-07-02",
+        "time": "09:00",
+        "note": "AET",
+        "winner": {
+          "name": "Belgium",
+          "code": "BEL",
+          "flag": "🇧🇪"
+        }
+      },
+      {
+        "id": 82,
+        "home": {
+          "name": "USA",
+          "code": "USA",
+          "flag": "🇺🇸"
+        },
+        "away": {
+          "name": "Bosnia and Herzegovina",
+          "code": "BIH",
+          "flag": "🇧🇦"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-02",
+        "time": "08:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 83,
+        "home": {
+          "name": "Spain",
+          "code": "ESP",
+          "flag": "🇪🇸"
+        },
+        "away": {
+          "name": "Austria",
+          "code": "AUT",
+          "flag": "🇦🇹"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-03",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 84,
+        "home": {
+          "name": "Portugal",
+          "code": "POR",
+          "flag": "🇵🇹"
+        },
+        "away": {
+          "name": "Croatia",
+          "code": "CRO",
+          "flag": "🇭🇷"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-03",
+        "time": "07:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 85,
+        "home": {
+          "name": "Switzerland",
+          "code": "SUI",
+          "flag": "🇨🇭"
+        },
+        "away": {
+          "name": "Algeria",
+          "code": "ALG",
+          "flag": "🇩🇿"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-03",
+        "time": "11:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 86,
+        "home": {
+          "name": "Australia",
+          "code": "AUS",
+          "flag": "🇦🇺"
+        },
+        "away": {
+          "name": "Egypt",
+          "code": "EGY",
+          "flag": "🇪🇬"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-04",
+        "time": "02:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 87,
+        "home": {
+          "name": "Argentina",
+          "code": "ARG",
+          "flag": "🇦🇷"
+        },
+        "away": {
+          "name": "Cape Verde",
+          "code": "CPV",
+          "flag": "🇨🇻"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-04",
+        "time": "06:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 88,
+        "home": {
+          "name": "Colombia",
+          "code": "COL",
+          "flag": "🇨🇴"
+        },
+        "away": {
+          "name": "Ghana",
+          "code": "GHA",
+          "flag": "🇬🇭"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-04",
+        "time": "09:30",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       }
     ],
-    "B": [
+    "r16": [
       {
-        "name": "Canada",
-        "code": "CAN",
-        "flag": "🇨🇦",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
+        "id": 89,
+        "home": {
+          "name": "W73",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W74",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-05",
+        "time": "01:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Bosnia and Herzegovina",
-        "code": "BIH",
-        "flag": "🇧🇦",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
+        "id": 90,
+        "home": {
+          "name": "W75",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W76",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-05",
+        "time": "05:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Qatar",
-        "code": "QAT",
-        "flag": "🇶🇦",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
+        "id": 91,
+        "home": {
+          "name": "W77",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W78",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-06",
+        "time": "04:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Switzerland",
-        "code": "SUI",
-        "flag": "🇨🇭",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
+        "id": 92,
+        "home": {
+          "name": "W79",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W80",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-06",
+        "time": "08:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 93,
+        "home": {
+          "name": "W81",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W82",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-07",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 94,
+        "home": {
+          "name": "W83",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W84",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-07",
+        "time": "08:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 95,
+        "home": {
+          "name": "W85",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W86",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-08",
+        "time": "00:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
+      },
+      {
+        "id": 96,
+        "home": {
+          "name": "W87",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W88",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-08",
+        "time": "04:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       }
     ],
-    "D": [
+    "qf": [
       {
-        "name": "USA",
-        "code": "USA",
-        "flag": "🇺🇸",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 4,
-        "ga": 1,
-        "gd": 3,
-        "points": 3
+        "id": 97,
+        "home": {
+          "name": "W89",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W90",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-10",
+        "time": "04:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Australia",
-        "code": "AUS",
-        "flag": "🇦🇺",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 2,
-        "ga": 0,
-        "gd": 2,
-        "points": 3
+        "id": 98,
+        "home": {
+          "name": "W91",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W92",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-11",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Turkiye",
-        "code": "TUR",
-        "flag": "🇹🇷",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 0,
-        "ga": 2,
-        "gd": -2,
-        "points": 0
+        "id": 99,
+        "home": {
+          "name": "W93",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W94",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-12",
+        "time": "05:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Paraguay",
-        "code": "PAR",
-        "flag": "🇵🇾",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 1,
-        "ga": 4,
-        "gd": -3,
-        "points": 0
+        "id": 100,
+        "home": {
+          "name": "W95",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W96",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-12",
+        "time": "09:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       }
     ],
-    "C": [
+    "sf": [
       {
-        "name": "Scotland",
-        "code": "SCO",
-        "flag": "🏴",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 1,
-        "ga": 0,
-        "gd": 1,
-        "points": 3
+        "id": 101,
+        "home": {
+          "name": "W97",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W98",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-15",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       },
       {
-        "name": "Brazil",
-        "code": "BRA",
-        "flag": "🇧🇷",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
-      },
-      {
-        "name": "Morocco",
-        "code": "MAR",
-        "flag": "🇲🇦",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
-      },
-      {
-        "name": "Haiti",
-        "code": "HAI",
-        "flag": "🇭🇹",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 0,
-        "ga": 1,
-        "gd": -1,
-        "points": 0
+        "id": 102,
+        "home": {
+          "name": "W99",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "away": {
+          "name": "W100",
+          "code": "TBD",
+          "flag": "🏳️"
+        },
+        "homeScore": null,
+        "awayScore": null,
+        "status": "upcoming",
+        "date": "2026-07-16",
+        "time": "03:00",
+        "note": null,
+        "winner": {
+          "name": "TBD",
+          "code": "TBD",
+          "flag": "🏳️"
+        }
       }
     ],
-    "E": [
-      {
-        "name": "Germany",
-        "code": "GER",
-        "flag": "🇩🇪",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 7,
-        "ga": 1,
-        "gd": 6,
-        "points": 3
+    "final": {
+      "id": 104,
+      "home": {
+        "name": "W101",
+        "code": "TBD",
+        "flag": "🏳️"
       },
-      {
-        "name": "Ivory Coast",
-        "code": "CIV",
-        "flag": "🇨🇮",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 1,
-        "ga": 0,
-        "gd": 1,
-        "points": 3
+      "away": {
+        "name": "W102",
+        "code": "TBD",
+        "flag": "🏳️"
       },
-      {
-        "name": "Ecuador",
-        "code": "ECU",
-        "flag": "🇪🇨",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 0,
-        "ga": 1,
-        "gd": -1,
-        "points": 0
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "date": "2026-07-20",
+      "time": "03:00"
+    },
+    "third": {
+      "id": 103,
+      "home": {
+        "name": "L101",
+        "code": "TBD",
+        "flag": "🏳️"
       },
-      {
-        "name": "Curacao",
-        "code": "CUR",
-        "flag": "🇨🇼",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 1,
-        "ga": 7,
-        "gd": -6,
-        "points": 0
-      }
-    ],
-    "F": [
-      {
-        "name": "Sweden",
-        "code": "SWE",
-        "flag": "🇸🇪",
-        "played": 1,
-        "won": 1,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 5,
-        "ga": 1,
-        "gd": 4,
-        "points": 3
+      "away": {
+        "name": "L102",
+        "code": "TBD",
+        "flag": "🏳️"
       },
-      {
-        "name": "Netherlands",
-        "code": "NED",
-        "flag": "🇳🇱",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "points": 1
-      },
-      {
-        "name": "Japan",
-        "code": "JPN",
-        "flag": "🇯🇵",
-        "played": 1,
-        "won": 0,
-        "drawn": 1,
-        "lost": 0,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "points": 1
-      },
-      {
-        "name": "Tunisia",
-        "code": "TUN",
-        "flag": "🇹🇳",
-        "played": 1,
-        "won": 0,
-        "drawn": 0,
-        "lost": 1,
-        "gf": 1,
-        "ga": 5,
-        "gd": -4,
-        "points": 0
-      }
-    ],
-    "H": [
-      {
-        "name": "Spain",
-        "code": "ESP",
-        "flag": "🇪🇸",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Cape Verde",
-        "code": "CPV",
-        "flag": "🇨🇻",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Saudi Arabia",
-        "code": "KSA",
-        "flag": "🇸🇦",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Uruguay",
-        "code": "URU",
-        "flag": "🇺🇾",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ],
-    "G": [
-      {
-        "name": "Belgium",
-        "code": "BEL",
-        "flag": "🇧🇪",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Egypt",
-        "code": "EGY",
-        "flag": "🇪🇬",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Iran",
-        "code": "IRN",
-        "flag": "🇮🇷",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "New Zealand",
-        "code": "NZL",
-        "flag": "🇳🇿",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ],
-    "I": [
-      {
-        "name": "France",
-        "code": "FRA",
-        "flag": "🇫🇷",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Senegal",
-        "code": "SEN",
-        "flag": "🇸🇳",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Norway",
-        "code": "NOR",
-        "flag": "🇳🇴",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Iraq",
-        "code": "IRQ",
-        "flag": "🇮🇶",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ],
-    "J": [
-      {
-        "name": "Argentina",
-        "code": "ARG",
-        "flag": "🇦🇷",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Algeria",
-        "code": "ALG",
-        "flag": "🇩🇿",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Austria",
-        "code": "AUT",
-        "flag": "🇦🇹",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Jordan",
-        "code": "JOR",
-        "flag": "🇯🇴",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ],
-    "K": [
-      {
-        "name": "Portugal",
-        "code": "POR",
-        "flag": "🇵🇹",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "DR Congo",
-        "code": "COD",
-        "flag": "🇨🇩",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Uzbekistan",
-        "code": "UZB",
-        "flag": "🇺🇿",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Colombia",
-        "code": "COL",
-        "flag": "🇨🇴",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ],
-    "L": [
-      {
-        "name": "England",
-        "code": "ENG",
-        "flag": "🏴",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Croatia",
-        "code": "CRO",
-        "flag": "🇭🇷",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Ghana",
-        "code": "GHA",
-        "flag": "🇬🇭",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      },
-      {
-        "name": "Panama",
-        "code": "PAN",
-        "flag": "🇵🇦",
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "points": 0
-      }
-    ]
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "date": "2026-07-19",
+      "time": "05:00"
+    }
   }
 }

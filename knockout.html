@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knockout Stages · FIFA World Cup 2026</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── KNOCKOUT PAGE SPECIFIC — TOURNAMENT BRACKET ── */
+    .ko-section { padding: 32px 0 64px; }
+
+    .ko-round-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      text-align: center;
+      padding-bottom: 10px;
+      white-space: nowrap;
+    }
+    .ko-round-label.is-final-label { color: var(--gold); }
+
+    .ko-hint {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dimmer);
+      margin-bottom: 18px;
+      letter-spacing: .04em;
+    }
+    .ko-hint .kbd {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0 5px;
+      font-family: var(--font-display);
+      color: var(--text-muted);
+    }
+
+    /* Scroll wrapper */
+    .bracket-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .bracket-scroll::-webkit-scrollbar { height: 8px; }
+    .bracket-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .bracket-scroll::-webkit-scrollbar-track { background: transparent; }
+
+    /* Bracket layout: left rounds -> final (center) -> right rounds (mirrored) */
+    .bracket {
+      display: flex;
+      align-items: stretch;
+      min-width: 1400px;
+      gap: 0;
+    }
+    .bracket-side { display: flex; }
+    .bracket-side.right { flex-direction: row-reverse; }
+
+    .round {
+      display: flex;
+      flex-direction: column;
+      width: var(--col-w, 176px);
+      flex-shrink: 0;
+      padding: 0 11px;
+    }
+    .round-body { display: flex; flex-direction: column; flex: 1; }
+
+    /* Each match sits in a slot whose height = flex:1, so pairs of slots
+       naturally center the next round's match between them. */
+    .slot {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+      min-height: 64px;
+    }
+    .slot-inner { width: 100%; position: relative; }
+
+    /* Connector lines — right side of a slot going to the next (rightward) round */
+    .connect-r::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      width: 22px;
+      height: 2px;
+      background: var(--border);
+    }
+    .slot.connect-r.pair-top::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 22px);
+      width: 2px;
+      height: 50%;
+      background: var(--border);
+    }
+    .slot.connect-r.pair-bottom::before {
+      content: "";
+      position: absolute;
+      bottom: 50%;
+      left: calc(100% + 22px);
+      width: 2px;
+      height: 50%;
+      background: var(--border);
+    }
+
+    /* Mirrored connectors for the right bracket side (lines go left) */
+    .connect-l::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: 22px;
+      height: 2px;
+      background: var(--border);
+    }
+    .slot.connect-l.pair-top::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: calc(100% + 22px);
+      width: 2px;
+      height: 50%;
+      background: var(--border);
+    }
+    .slot.connect-l.pair-bottom::before {
+      content: "";
+      position: absolute;
+      bottom: 50%;
+      right: calc(100% + 22px);
+      width: 2px;
+      height: 50%;
+      background: var(--border);
+    }
+
+    /* Match card (compact bracket version) */
+    .bk-match {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      cursor: default;
+    }
+    .bk-match:hover { border-color: var(--accent); background: var(--bg-card-hover); transform: translateY(-1px); }
+    .bk-match.is-final { border-color: var(--gold); box-shadow: 0 0 20px var(--gold-glow); }
+    .bk-match.has-winner-left  .bk-row.home { background: var(--accent-glow); }
+    .bk-match.has-winner-right .bk-row.away { background: var(--accent-glow); }
+
+    .bk-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+    .bk-row + .bk-row { border-top: 1px solid var(--border-subtle); }
+    .bk-row.winner { color: var(--text); font-weight: 700; }
+    .bk-row.tbd { color: var(--text-dimmer); font-style: italic; }
+    .bk-flag { font-size: 14px; flex-shrink: 0; width: 16px; }
+    .bk-name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bk-score {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dimmer);
+      min-width: 14px;
+      text-align: right;
+    }
+    .bk-row.winner .bk-score { color: var(--accent); }
+
+    .bk-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      color: var(--text-dimmer);
+      padding: 3px 8px 4px;
+      font-family: var(--font-display);
+      letter-spacing: .05em;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .bk-status-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .bk-status-dot.completed { background: var(--finished); }
+    .bk-status-dot.upcoming  { background: var(--border); }
+    .bk-status-dot.live      { background: var(--live); animation: blink 1.4s ease-in-out infinite; }
+    .bk-note { margin-left: auto; font-style: italic; }
+
+    /* Final / champion column, centered */
+    .final-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      flex-shrink: 0;
+      padding: 0 11px;
+      gap: 18px;
+    }
+
+    .ko-champion {
+      text-align: center;
+      padding: 20px 18px;
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      box-shadow: 0 0 40px var(--gold-glow);
+      width: 100%;
+    }
+    .ko-champion-trophy { font-size: 40px; margin-bottom: 6px; }
+    .ko-champion-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .ko-champion-team {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* Third place — separate row below the bracket */
+    .third-place-wrap {
+      max-width: 260px;
+      margin: 40px auto 0;
+      text-align: center;
+    }
+    .third-place-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 10px;
+    }
+
+    /* Mobile: bracket keeps horizontal-scroll, but shrink columns a touch */
+    @media (max-width: 640px) {
+      .round { width: 150px; padding: 0 11px; }
+      .final-col { width: 170px; padding: 0 11px; }
+      .bracket { min-width: 1180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">World Cup</span>
+        <span class="brand-year">2026</span>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html#schedule" class="nav-link">Schedule</a>
+        <a href="index.html#next-match" class="nav-link">Next Match</a>
+        <a href="rules.html" class="nav-link">Rules World Cup 2k26</a>
+        <a href="knockout.html" class="nav-link active">Knockout Stages</a>
+        <a href="index.html#about" class="nav-link">About</a>
+      </nav>
+      <div class="header-actions">
+        <!-- Home button -->
+        <a href="index.html" class="theme-toggle home-btn" id="homeBtn" aria-label="Kembali ke halaman utama" title="Home">
+          <span class="theme-icon">🏠</span>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero rules-hero" aria-label="Knockout stages">
+    <div class="pitch-lines" aria-hidden="true">
+      <div class="pitch-line"></div>
+      <div class="pitch-circle"></div>
+      <div class="pitch-line"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">23rd FIFA World Cup · Knockout Stages</p>
+      <h1 class="hero-heading">
+        <span class="heading-big">Knockout</span>
+        <span class="heading-year">Stages</span>
+      </h1>
+      <p class="hero-sub">Round of 32 · Round of 16 · Quarter-finals · Semi-finals · Final</p>
+    </div>
+  </section>
+
+  <!-- ========== BRACKET ========== -->
+  <main class="ko-section" aria-label="Knockout bracket">
+    <div class="container" id="bracketContainer">
+      <div class="loading-pulse">Loading bracket…</div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-title">⚽ WC2026 Schedule BY Aditya Pradana</span>
+        <p class="footer-desc">Unofficial fan schedule tracker for FIFA World Cup 2026. All times shown in WITA.</p>
+      </div>
+      <div class="footer-links">
+        <p class="footer-links-heading">Follow along</p>
+        <ul class="social-links">
+          <li><a href="https://www.instagram.com/aditprad4na/" target="_blank" rel="noopener noreferrer" class="social-link">📸 Instagram</a></li>
+          <li><a href="https://www.fifa.com" target="_blank" rel="noopener noreferrer" class="social-link">🌐 FIFA.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 WC Schedule Fan Site · Not affiliated with FIFA</p>
+  </footer>
+
+  <script>
+    // ── THEME TOGGLE ──
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon   = document.getElementById('themeIcon');
+    function loadTheme() {
+      const saved = localStorage.getItem('wc2026-theme');
+      if (saved) { document.documentElement.setAttribute('data-theme', saved); themeIcon.textContent = saved === 'light' ? '☀️' : '🌙'; }
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('wc2026-theme', isDark ? 'light' : 'dark');
+    });
+    loadTheme();
+
+    // ── BRACKET RENDER (real tournament-bracket layout) ──
+    function formatDateWITA(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+    }
+
+    function getWinnerName(m) {
+      const completed = m.status === 'completed';
+      const hs = m.homeScore, as_ = m.awayScore;
+      const note = m.note || '';
+      if (!completed || hs === null || as_ === null) return null;
+      if (hs > as_) return m.home.name;
+      if (as_ > hs) return m.away.name;
+      if (note.toLowerCase().includes('pens') || note.toLowerCase().includes('aet')) {
+        return note.split(' win')[0].trim();
+      }
+      return null;
+    }
+
+    const isTBD = (t) => !t || t.code === 'TBD';
+
+    // Compact match card used inside the bracket
+    function bracketCard(m, isFinal) {
+      const completed = m.status === 'completed';
+      const hs = m.homeScore, as_ = m.awayScore;
+      const note = m.note || '';
+      const winnerName = getWinnerName(m);
+
+      function row(t, score, side) {
+        const isWinner = winnerName && t && t.name === winnerName;
+        const cls = isTBD(t) ? 'bk-row tbd' : (isWinner ? 'bk-row winner ' + side : 'bk-row ' + side);
+        const flag = isTBD(t) ? '🏳️' : t.flag;
+        const name = isTBD(t) ? (t.name || 'TBD') : t.name;
+        const scoreStr = (completed && score !== null && score !== undefined) ? score : '';
+        return `<div class="${cls}">
+          <span class="bk-flag">${flag}</span>
+          <span class="bk-name">${name}</span>
+          <span class="bk-score">${scoreStr}</span>
+        </div>`;
+      }
+
+      const dotCls = m.status === 'live' ? 'live' : m.status === 'completed' ? 'completed' : 'upcoming';
+      const dateStr = m.date ? formatDateWITA(m.date) : '';
+      let matchCls = isFinal ? 'bk-match is-final' : 'bk-match';
+      if (winnerName && m.home && winnerName === m.home.name) matchCls += ' has-winner-left';
+      if (winnerName && m.away && winnerName === m.away.name) matchCls += ' has-winner-right';
+
+      return `<div class="${matchCls}">
+        ${row(m.home, hs, 'home')}
+        ${row(m.away, as_, 'away')}
+        <div class="bk-meta">
+          <span class="bk-status-dot ${dotCls}"></span>
+          <span>${dateStr}${m.time ? ' · ' + m.time : ''}</span>
+          ${note ? `<span class="bk-note">${note}</span>` : ''}
+        </div>
+      </div>`;
+    }
+
+    // Build one round column. `mirrored` = true for the right-hand bracket side (lines point left).
+    // `connect` = false for the last round of a side (no outgoing line, e.g. Semi-final feeding the Final).
+    function roundColumn(matches, { mirrored = false, connect = true, merge = connect, isFinal = false } = {}) {
+      const connectCls = connect ? (mirrored ? 'connect-l' : 'connect-r') : '';
+      const slots = matches.map((m, i) => {
+        const pairCls = merge ? (i % 2 === 0 ? 'pair-top' : 'pair-bottom') : '';
+        return `<div class="slot ${connectCls} ${pairCls}">
+          <div class="slot-inner">${bracketCard(m, isFinal)}</div>
+        </div>`;
+      }).join('');
+      return `<div class="round-body">${slots}</div>`;
+    }
+
+    function roundWithLabel(label, matches, opts) {
+      return `<div class="round">
+        <p class="ko-round-label">${label}</p>
+        ${roundColumn(matches, opts)}
+      </div>`;
+    }
+
+    function half(arr) {
+      const mid = Math.ceil(arr.length / 2);
+      return [arr.slice(0, mid), arr.slice(mid)];
+    }
+
+    async function loadBracket() {
+      const container = document.getElementById('bracketContainer');
+      try {
+        const res = await fetch('matches.json');
+        const data = await res.json();
+        const b = data.bracket;
+
+        const [r32L, r32R] = half(b.r32 || []);
+        const [r16L, r16R] = half(b.r16 || []);
+        const [qfL, qfR]   = half(b.qf || []);
+        const [sfL, sfR]   = half(b.sf || []);
+
+        let html = `<p class="ko-hint">↔️ Geser untuk melihat seluruh bracket &nbsp; <span class="kbd">shift</span> + scroll juga bisa</p>`;
+        html += `<div class="bracket-scroll"><div class="bracket">`;
+
+        // LEFT SIDE: R32 -> R16 -> QF -> SF (SF feeds the center final, so its column has no outgoing connector)
+        html += `<div class="bracket-side left">`;
+        html += roundWithLabel('Round of 32', r32L, { mirrored: false, connect: true });
+        html += roundWithLabel('Round of 16', r16L, { mirrored: false, connect: true });
+        html += roundWithLabel('Quarter-finals', qfL, { mirrored: false, connect: true });
+        html += roundWithLabel('Semi-finals', sfL, { mirrored: false, connect: true, merge: false });
+        html += `</div>`;
+
+        // CENTER: Final + Champion
+        html += `<div class="final-col">
+          <div>
+            <p class="ko-round-label is-final-label">Final</p>
+            ${bracketCard(b.final, true)}
+          </div>`;
+        if (b.final && b.final.status === 'completed') {
+          const f = b.final;
+          let champ = null;
+          if (f.homeScore > f.awayScore) champ = f.home;
+          else if (f.awayScore > f.homeScore) champ = f.away;
+          if (champ) {
+            html += `<div class="ko-champion">
+              <div class="ko-champion-trophy">🏆</div>
+              <div class="ko-champion-label">World Champion 2026</div>
+              <div class="ko-champion-team">${champ.flag} ${champ.name}</div>
+            </div>`;
+          }
+        }
+        html += `</div>`;
+
+        // RIGHT SIDE (mirrored): SF -> QF -> R16 -> R32
+        html += `<div class="bracket-side right">`;
+        html += roundWithLabel('Round of 32', r32R, { mirrored: true, connect: true });
+        html += roundWithLabel('Round of 16', r16R, { mirrored: true, connect: true });
+        html += roundWithLabel('Quarter-finals', qfR, { mirrored: true, connect: true });
+        html += roundWithLabel('Semi-finals', sfR, { mirrored: true, connect: true, merge: false });
+        html += `</div>`;
+
+        html += `</div></div>`; // .bracket, .bracket-scroll
+
+        // Third place, shown separately below the bracket
+        if (b.third) {
+          html += `<div class="third-place-wrap">
+            <p class="third-place-label">Third Place Match</p>
+            ${bracketCard(b.third, false)}
+          </div>`;
+        }
+
+        container.innerHTML = html;
+      } catch (err) {
+        container.innerHTML = `<p style="color:var(--text-muted);text-align:center">⚠️ Gagal memuat data bracket: ${err.message}</p>`;
+      }
+    }
+
+    loadBracket();
+  </script>
+</body>
+</html>
