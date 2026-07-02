@@ -362,7 +362,7 @@ function buildMatchCard(match, index) {
   const awayWonPens = hasPens && match.penaltyAwayScore > match.penaltyHomeScore;
 
   const penNote = hasPens
-    ? `<span class="card-pen">🥅 Adu Penalti ${match.penaltyHomeScore}–${match.penaltyAwayScore}</span>`
+    ? `<span class="card-pen">🥅 On Penalty ${match.penaltyHomeScore}–${match.penaltyAwayScore}</span>`
     : '';
 
   const centerHtml = hasScore
