@@ -34,11 +34,16 @@ const lastUpdated     = document.getElementById('lastUpdated');
 const standingsWrap   = document.getElementById('standingsWrap');
 const standingsTitle  = document.getElementById('standingsTitle');
 const standingsBody   = document.getElementById('standingsBody');
+const liveSection     = document.getElementById('liveSection');
+const liveGrid        = document.getElementById('liveGrid');
+
+let liveScorePollTimer = null;
 
 // ── BOOT ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadTheme();
   fetchMatches();
+  startLiveScorePolling();
   themeToggle.addEventListener('click', toggleTheme);
   searchInput.addEventListener('input', applyFilters);
   stageFilter.addEventListener('change', applyFilters);
@@ -48,6 +53,87 @@ document.addEventListener('DOMContentLoaded', () => {
   resetBtn.addEventListener('click', clearFilters);
   noResultsReset.addEventListener('click', clearFilters);
 });
+
+// ── LIVE SCORES (via /api/livescore, proxying football-data.org) ───────────
+/**
+ * Polls the Vercel serverless proxy for live World Cup 2026 matches.
+ * The "Live Sekarang" section stays hidden whenever nothing is live.
+ * Polling interval is 30s — gentle enough for football-data.org's rate
+ * limits while still feeling live.
+ */
+function startLiveScorePolling() {
+  fetchLiveScores();
+  liveScorePollTimer = setInterval(fetchLiveScores, 30000);
+}
+
+async function fetchLiveScores() {
+  if (!liveSection || !liveGrid) return; // markup not present on this page
+  try {
+    const res = await fetch('/api/livescore');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderLiveScores(data.matches || []);
+  } catch (err) {
+    // Fail silently in the UI — live scores are a nice-to-have, not core
+    // functionality, so a hiccup here shouldn't disrupt the schedule.
+    console.warn('Live score fetch failed:', err.message);
+  }
+}
+
+function renderLiveScores(matches) {
+  if (!matches.length) {
+    liveSection.classList.add('hidden');
+    liveGrid.innerHTML = '';
+    return;
+  }
+
+  liveGrid.innerHTML = matches.map(liveScoreCardHtml).join('');
+  liveSection.classList.remove('hidden');
+}
+
+function liveScoreCardHtml(m) {
+  const minuteLabel = m.status === 'PAUSED'
+    ? 'HT'
+    : (typeof m.minute === 'number' ? `${m.minute}'` : 'LIVE');
+
+  const hasPens = m.score.penHome != null && m.score.penAway != null;
+  const penNote = hasPens
+    ? `<span class="live-pen">🥅 Pen ${m.score.penHome}–${m.score.penAway}</span>`
+    : '';
+
+  const home = m.home, away = m.away;
+  const hs = m.score.home ?? 0;
+  const as = m.score.away ?? 0;
+
+  return `
+    <div class="live-card">
+      <div class="live-card-top">
+        <span class="live-dot"></span>
+        <span class="live-minute">${minuteLabel}</span>
+        ${m.stage ? `<span class="live-stage">${formatStageLabel(m.stage)}</span>` : ''}
+      </div>
+      <div class="live-card-teams">
+        <div class="live-team">
+          ${home.crest ? `<img class="live-crest" src="${home.crest}" alt="" aria-hidden="true">` : ''}
+          <span class="live-team-name">${home.name}</span>
+        </div>
+        <span class="live-score">${hs} – ${as}</span>
+        <div class="live-team">
+          ${away.crest ? `<img class="live-crest" src="${away.crest}" alt="" aria-hidden="true">` : ''}
+          <span class="live-team-name">${away.name}</span>
+        </div>
+      </div>
+      ${penNote ? `<div class="live-card-foot">${penNote}</div>` : ''}
+    </div>
+  `;
+}
+
+function formatStageLabel(stage) {
+  return String(stage)
+    .replace(/_/g, ' ')
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
 // ── FETCH DATA ─────────────────────────────────────────────────────────────
 /**
@@ -264,8 +350,26 @@ function buildMatchCard(match, index) {
     && typeof match.homeScore === 'number'
     && typeof match.awayScore === 'number';
 
+  // Penalty shootout: only relevant when regulation/ET score is level and
+  // both penalty scores are present (set by matches.json after the match).
+  const hasPens = hasScore
+    && match.status === 'finished'
+    && match.homeScore === match.awayScore
+    && typeof match.penaltyHomeScore === 'number'
+    && typeof match.penaltyAwayScore === 'number';
+
+  const homeWonPens = hasPens && match.penaltyHomeScore > match.penaltyAwayScore;
+  const awayWonPens = hasPens && match.penaltyAwayScore > match.penaltyHomeScore;
+
+  const penNote = hasPens
+    ? `<span class="card-pen">🥅 Adu Penalti ${match.penaltyHomeScore}–${match.penaltyAwayScore}</span>`
+    : '';
+
   const centerHtml = hasScore
-    ? `<span class="card-score" aria-hidden="true">${match.homeScore} – ${match.awayScore}</span>`
+    ? `<div class="card-score-wrap">
+        <span class="card-score" aria-hidden="true">${match.homeScore} – ${match.awayScore}</span>
+        ${penNote}
+      </div>`
     : `<span class="card-vs" aria-hidden="true">VS</span>`;
 
   article.innerHTML = `
@@ -279,13 +383,13 @@ function buildMatchCard(match, index) {
         ${statusHtml}
       </div>
       <div class="card-teams">
-        <div class="card-team">
+        <div class="card-team${homeWonPens ? ' is-pen-winner' : ''}">
           <span class="card-flag" aria-hidden="true">${match.homeTeam.flag}</span>
           <span class="card-team-name">${match.homeTeam.name}</span>
           <span class="card-team-code">${match.homeTeam.code}</span>
         </div>
         ${centerHtml}
-        <div class="card-team">
+        <div class="card-team${awayWonPens ? ' is-pen-winner' : ''}">
           <span class="card-flag" aria-hidden="true">${match.awayTeam.flag}</span>
           <span class="card-team-name">${match.awayTeam.name}</span>
           <span class="card-team-code">${match.awayTeam.code}</span>

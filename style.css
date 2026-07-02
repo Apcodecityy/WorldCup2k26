@@ -256,6 +256,106 @@ img { display: block; max-width: 100%; }
   padding: 40px 0 20px;
 }
 
+/* ── LIVE NOW SECTION ── */
+.live-section { padding: 28px 0 4px; }
+.live-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--live);
+}
+.live-label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live);
+  animation: blink 1.4s ease-in-out infinite;
+}
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.live-card {
+  background: var(--bg-card);
+  border: 1px solid var(--live);
+  box-shadow: 0 0 0 1px rgba(248,81,73,.08), var(--shadow-card);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.live-card-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--live);
+  animation: blink 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.live-minute {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  color: var(--live);
+}
+.live-stage {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+.live-card-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.live-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+.live-crest { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+.live-team-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.live-score {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--live);
+  flex-shrink: 0;
+  padding: 0 6px;
+}
+.live-card-foot {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+.live-pen {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--accent);
+  background: rgba(202,218,31,.15);
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+
 .section-label {
   font-family: var(--font-display);
   font-size: 15px;
@@ -871,16 +971,40 @@ img { display: block; max-width: 100%; }
 .standings-table tr.st-qualify .st-team { color: var(--text); }
 
 /* ── CARD SCORE ── */
+.card-score-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 0 8px;
+}
 .card-score {
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: .03em;
-  flex-shrink: 0;
-  padding: 0 8px;
   white-space: nowrap;
 }
+
+/* Penalty shootout note, shown under the score on the schedule cards */
+.card-pen {
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--accent);
+  background: rgba(202,218,31,.15);
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Highlight the team that advanced via penalties */
+.card-team.is-pen-winner .card-team-name { color: var(--accent); }
+.card-team.is-pen-winner .card-flag { filter: drop-shadow(0 0 4px var(--gold-glow, rgba(202,218,31,.4))); }
 
 /* ── FILTERS (UPDATED) ── */
 .filters-bar {
