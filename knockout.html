@@ -447,6 +447,47 @@
       return { resolveMatch };
     }
 
+    /**
+     * TRUE BRACKET ORDER
+     * ─────────────────────────────────────────────────────────
+     * The visual bracket connects boxes purely by their position in each
+     * round's array (box 0+1 merge into the next round's box 0, box 2+3
+     * into box 1, etc.) — it does NOT look at the W##/L## reference data
+     * to decide *which* boxes visually merge. That only lines up correctly
+     * if each round's array is ordered so that the two matches feeding a
+     * given next-round match are adjacent to each other.
+     *
+     * Sorting by id does not guarantee that (e.g. match 89 might be fed by
+     * matches 74 and 77, not 73 and 74). So instead we walk the bracket
+     * top-down from the Final, following each match's actual W##/L##
+     * references, to produce the correct order for every round.
+     */
+    function getSourceIds(raw) {
+      const ids = [];
+      for (const side of ['homeTeam', 'awayTeam']) {
+        const t = (raw && (raw[side] || raw[side === 'homeTeam' ? 'home' : 'away'])) || null;
+        const m = t && /^[WL](\d+)$/.exec(t.name || '');
+        if (m) ids.push(parseInt(m[1], 10));
+      }
+      return ids;
+    }
+
+    function buildBracketOrder(rootId, rawById) {
+      const levels = []; // levels[0] = round just below root, levels[1] = round below that, etc.
+      let current = [rootId];
+      while (true) {
+        const next = [];
+        for (const id of current) {
+          const src = getSourceIds(rawById[id]);
+          if (src.length === 2) next.push(...src);
+        }
+        if (next.length === 0) break;
+        levels.push(next);
+        current = next;
+      }
+      return levels;
+    }
+
     function bracketCard(m, isFinal) {
       if (!m) {
         return `<div class="bk-match">
@@ -533,17 +574,21 @@
         data.matches.forEach(m => { rawById[m.id] = m; });
         const { resolveMatch } = buildResolver(rawById);
 
-        const byStage = s => data.matches
-          .filter(m => m.stage === s)
-          .sort((a, b) => a.id - b.id)
-          .map(m => resolveMatch(m.id));
-
-        const R32 = byStage('Round of 32');
-        const R16 = byStage('Round of 16');
-        const QF  = byStage('Quarter-finals');
-        const SF  = byStage('Semi-finals');
         const finRaw = data.matches.find(m => m.stage === 'Final');
         const thdRaw = data.matches.find(m => m.stage === 'Third Place Match');
+
+        // Walk down from the Final through its real W##/L## references so
+        // each round's array is ordered to match the actual bracket wiring
+        // (see buildBracketOrder above) — not just sorted by id.
+        const order = finRaw ? buildBracketOrder(finRaw.id, rawById) : [];
+        const [sfIds, qfIds, r16Ids, r32Ids] = order;
+
+        const idsToMatches = ids => (ids || []).map(id => resolveMatch(id));
+
+        const R32 = idsToMatches(r32Ids);
+        const R16 = idsToMatches(r16Ids);
+        const QF  = idsToMatches(qfIds);
+        const SF  = idsToMatches(sfIds);
         const FIN = finRaw ? resolveMatch(finRaw.id) : null;
         const THD = thdRaw ? resolveMatch(thdRaw.id) : null;
 
