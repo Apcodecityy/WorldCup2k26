@@ -239,24 +239,16 @@ function renderLiveScores(matches) {
     return;
   }
 
-  // Only display live matches that can be matched to our scheduled
-  // `allMatches` entries. This avoids showing unrelated or noisy
-  // upstream feed results when they don't correspond to our sheet.
+  // Only display live matches that are confidently matched to our
+  // scheduled `allMatches` entries _and_ are meaningful (have a minute
+  // or a reported score). This prevents noisy upstream results from
+  // appearing in the live ticker when they aren't actually in-play for
+  // our schedule.
   const visible = matches.filter(m => {
     if (!m.home || !m.away) return false;
-    const liveHome = normalizeTeamName(m.home.name);
-    const liveAway = normalizeTeamName(m.away.name);
-
-    return allMatches && allMatches.find(sch => {
-      const homeCode = String(sch.homeTeam?.code || '').toLowerCase();
-      const awayCode = String(sch.awayTeam?.code || '').toLowerCase();
-      const liveHomeCode = String(m.home?.code || '').toLowerCase();
-      const liveAwayCode = String(m.away?.code || '').toLowerCase();
-
-      return (normalizeTeamName(sch.homeTeam?.name) === liveHome &&
-              normalizeTeamName(sch.awayTeam?.name) === liveAway)
-        || (homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
-    });
+    const target = findMatchingScheduleEntry(m, allMatches);
+    if (!target) return false;
+    return isMeaningfulLiveMatch(m, target);
   });
 
   if (!visible.length) {
