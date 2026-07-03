@@ -1821,34 +1821,6 @@ window.__MATCHES_DATA__ = {
       "group": null,
       "matchday": null,
       "date": "2026-06-30",
-      "time": "01:00",
-      "timezone": "WITA",
-      "homeTeam": {
-        "name": "Brazil",
-        "code": "BRA",
-        "flag": "🇧🇷"
-      },
-      "awayTeam": {
-        "name": "Japan",
-        "code": "JPN",
-        "flag": "🇯🇵"
-      },
-      "homeScore": 2,
-      "awayScore": 1,
-      "penaltyHomeScore": null,
-      "penaltyAwayScore": null,
-      "note": null,
-      "stadium": "NRG Stadium",
-      "city": "Houston",
-      "country": "USA",
-      "status": "completed"
-    },
-    {
-      "id": 75,
-      "stage": "Round of 32",
-      "group": null,
-      "matchday": null,
-      "date": "2026-06-30",
       "time": "04:30",
       "timezone": "WITA",
       "homeTeam": {
@@ -1872,7 +1844,7 @@ window.__MATCHES_DATA__ = {
       "status": "completed"
     },
     {
-      "id": 76,
+      "id": 75,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -1900,35 +1872,35 @@ window.__MATCHES_DATA__ = {
       "status": "completed"
     },
     {
-      "id": 77,
+      "id": 76,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
-      "date": "2026-07-01",
+      "date": "2026-06-30",
       "time": "01:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "Norway",
-        "code": "NOR",
-        "flag": "🇳🇴"
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷"
       },
       "awayTeam": {
-        "name": "Ivory Coast",
-        "code": "CIV",
-        "flag": "🇨🇮"
+        "name": "Japan",
+        "code": "JPN",
+        "flag": "🇯🇵"
       },
       "homeScore": 2,
       "awayScore": 1,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null,
       "note": null,
-      "stadium": "AT&T Stadium",
-      "city": "Dallas",
+      "stadium": "NRG Stadium",
+      "city": "Houston",
       "country": "USA",
       "status": "completed"
     },
     {
-      "id": 78,
+      "id": 77,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -1952,6 +1924,34 @@ window.__MATCHES_DATA__ = {
       "note": null,
       "stadium": "Lincoln Financial Field",
       "city": "Philadelphia",
+      "country": "USA",
+      "status": "completed"
+    },
+    {
+      "id": 78,
+      "stage": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "date": "2026-07-01",
+      "time": "01:00",
+      "timezone": "WITA",
+      "homeTeam": {
+        "name": "Ivory Coast",
+        "code": "CIV",
+        "flag": "🇨🇮"
+      },
+      "awayTeam": {
+        "name": "Norway",
+        "code": "NOR",
+        "flag": "🇳🇴"
+      },
+      "homeScore": 1,
+      "awayScore": 2,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null,
+      "note": null,
+      "stadium": "AT&T Stadium",
+      "city": "Dallas",
       "country": "USA",
       "status": "completed"
     },
@@ -2017,34 +2017,6 @@ window.__MATCHES_DATA__ = {
       "group": null,
       "matchday": null,
       "date": "2026-07-02",
-      "time": "04:00",
-      "timezone": "WITA",
-      "homeTeam": {
-        "name": "Belgium",
-        "code": "BEL",
-        "flag": "🇧🇪"
-      },
-      "awayTeam": {
-        "name": "Senegal",
-        "code": "SEN",
-        "flag": "🇸🇳"
-      },
-      "homeScore": 3,
-      "awayScore": 2,
-      "penaltyHomeScore": null,
-      "penaltyAwayScore": null,
-      "note": null,
-      "stadium": "Lumen Field",
-      "city": "Seattle",
-      "country": "USA",
-      "status": "completed"
-    },
-    {
-      "id": 82,
-      "stage": "Round of 32",
-      "group": null,
-      "matchday": null,
-      "date": "2026-07-02",
       "time": "08:00",
       "timezone": "WITA",
       "homeTeam": {
@@ -2068,35 +2040,35 @@ window.__MATCHES_DATA__ = {
       "status": "completed"
     },
     {
-      "id": 83,
+      "id": 82,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
-      "date": "2026-07-03",
-      "time": "03:00",
+      "date": "2026-07-02",
+      "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "Spain",
-        "code": "ESP",
-        "flag": "🇪🇸"
+        "name": "Belgium",
+        "code": "BEL",
+        "flag": "🇧🇪"
       },
       "awayTeam": {
-        "name": "Austria",
-        "code": "AUT",
-        "flag": "🇦🇹"
+        "name": "Senegal",
+        "code": "SEN",
+        "flag": "🇸🇳"
       },
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 3,
+      "awayScore": 2,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null,
       "note": null,
-      "stadium": "SoFi Stadium",
-      "city": "Los Angeles",
+      "stadium": "Lumen Field",
+      "city": "Seattle",
       "country": "USA",
-      "status": "upcoming"
+      "status": "completed"
     },
     {
-      "id": 84,
+      "id": 83,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -2121,6 +2093,34 @@ window.__MATCHES_DATA__ = {
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
+      "status": "upcoming"
+    },
+    {
+      "id": 84,
+      "stage": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "date": "2026-07-03",
+      "time": "03:00",
+      "timezone": "WITA",
+      "homeTeam": {
+        "name": "Spain",
+        "code": "ESP",
+        "flag": "🇪🇸"
+      },
+      "awayTeam": {
+        "name": "Austria",
+        "code": "AUT",
+        "flag": "🇦🇹"
+      },
+      "homeScore": null,
+      "awayScore": null,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null,
+      "note": null,
+      "stadium": "SoFi Stadium",
+      "city": "Los Angeles",
+      "country": "USA",
       "status": "upcoming"
     },
     {
@@ -2157,34 +2157,6 @@ window.__MATCHES_DATA__ = {
       "group": null,
       "matchday": null,
       "date": "2026-07-04",
-      "time": "02:00",
-      "timezone": "WITA",
-      "homeTeam": {
-        "name": "Australia",
-        "code": "AUS",
-        "flag": "🇦🇺"
-      },
-      "awayTeam": {
-        "name": "Egypt",
-        "code": "EGY",
-        "flag": "🇪🇬"
-      },
-      "homeScore": null,
-      "awayScore": null,
-      "penaltyHomeScore": null,
-      "penaltyAwayScore": null,
-      "note": null,
-      "stadium": "AT&T Stadium",
-      "city": "Dallas",
-      "country": "USA",
-      "status": "upcoming"
-    },
-    {
-      "id": 87,
-      "stage": "Round of 32",
-      "group": null,
-      "matchday": null,
-      "date": "2026-07-04",
       "time": "06:00",
       "timezone": "WITA",
       "homeTeam": {
@@ -2208,7 +2180,7 @@ window.__MATCHES_DATA__ = {
       "status": "upcoming"
     },
     {
-      "id": 88,
+      "id": 87,
       "stage": "Round of 32",
       "group": null,
       "matchday": null,
@@ -2236,6 +2208,34 @@ window.__MATCHES_DATA__ = {
       "status": "upcoming"
     },
     {
+      "id": 88,
+      "stage": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "date": "2026-07-04",
+      "time": "02:00",
+      "timezone": "WITA",
+      "homeTeam": {
+        "name": "Australia",
+        "code": "AUS",
+        "flag": "🇦🇺"
+      },
+      "awayTeam": {
+        "name": "Egypt",
+        "code": "EGY",
+        "flag": "🇪🇬"
+      },
+      "homeScore": null,
+      "awayScore": null,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null,
+      "note": null,
+      "stadium": "AT&T Stadium",
+      "city": "Dallas",
+      "country": "USA",
+      "status": "upcoming"
+    },
+    {
       "id": 89,
       "stage": "Round of 16",
       "group": null,
@@ -2244,14 +2244,14 @@ window.__MATCHES_DATA__ = {
       "time": "01:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W73",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W74"
       },
       "awayTeam": {
-        "name": "W74",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W77"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2272,14 +2272,14 @@ window.__MATCHES_DATA__ = {
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W75",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W73"
       },
       "awayTeam": {
-        "name": "W76",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W75"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2300,14 +2300,14 @@ window.__MATCHES_DATA__ = {
       "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W77",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W76"
       },
       "awayTeam": {
-        "name": "W78",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W78"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2356,14 +2356,14 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W81",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W83"
       },
       "awayTeam": {
-        "name": "W82",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W84"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2384,14 +2384,14 @@ window.__MATCHES_DATA__ = {
       "time": "08:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W83",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W81"
       },
       "awayTeam": {
-        "name": "W84",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W82"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2412,14 +2412,14 @@ window.__MATCHES_DATA__ = {
       "time": "00:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W85",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W86"
       },
       "awayTeam": {
-        "name": "W86",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W88"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2440,14 +2440,14 @@ window.__MATCHES_DATA__ = {
       "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W87",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W85"
       },
       "awayTeam": {
-        "name": "W88",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W87"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2491,14 +2491,14 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W91",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W93"
       },
       "awayTeam": {
-        "name": "W92",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W94"
       },
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
@@ -2514,14 +2514,14 @@ window.__MATCHES_DATA__ = {
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W93",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W91"
       },
       "awayTeam": {
-        "name": "W94",
         "code": "TBD",
-        "flag": "🏳️"
+        "flag": "🏳️",
+        "name": "W92"
       },
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
