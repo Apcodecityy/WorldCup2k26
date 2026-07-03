@@ -137,6 +137,46 @@ function normalizeTeamName(name) {
   return aliases[key] || key;
 }
 
+function findMatchingScheduleEntry(live, candidates) {
+  if (!live?.home || !live?.away) return null;
+
+  const liveHome = normalizeTeamName(live.home.name);
+  const liveAway = normalizeTeamName(live.away.name);
+  const liveHomeCode = String(live.home?.code || '').toLowerCase();
+  const liveAwayCode = String(live.away?.code || '').toLowerCase();
+
+  return candidates.find((m) => {
+    const homeName = normalizeTeamName(m.homeTeam?.name);
+    const awayName = normalizeTeamName(m.awayTeam?.name);
+    const homeCode = String(m.homeTeam?.code || '').toLowerCase();
+    const awayCode = String(m.awayTeam?.code || '').toLowerCase();
+
+    const directName = homeName === liveHome && awayName === liveAway;
+    const swappedName = homeName === liveAway && awayName === liveHome;
+    const directCode = !!(homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
+    const swappedCode = !!(homeCode && awayCode && homeCode === liveAwayCode && awayCode === liveHomeCode);
+
+    return directName || swappedName || directCode || swappedCode;
+  });
+}
+
+function isMeaningfulLiveMatch(live, scheduleMatch) {
+  const status = String(live.status || '').toUpperCase();
+  if (status === 'FINISHED') return true;
+  if (status !== 'IN_PLAY' && status !== 'PAUSED') return false;
+
+  const minute = Number.isFinite(live.minute) ? live.minute : null;
+  const hasScore = typeof live.score?.home === 'number' || typeof live.score?.away === 'number';
+  if (minute == null && !hasScore) return false;
+
+  if (!scheduleMatch?._date) return false;
+
+  const now = new Date();
+  const startWindow = new Date(scheduleMatch._date.getTime() - 90 * 60 * 1000);
+  const endWindow = new Date(scheduleMatch._date.getTime() + 240 * 60 * 1000);
+  return now >= startWindow && now <= endWindow;
+}
+
 function mergeLiveScoresIntoSchedule(liveMatches) {
   if (!liveMatches.length || !allMatches.length) return;
 
@@ -144,28 +184,32 @@ function mergeLiveScoresIntoSchedule(liveMatches) {
 
   for (const live of liveMatches) {
     if (!live.home || !live.away) continue;
-    const liveHome = normalizeTeamName(live.home.name);
-    const liveAway = normalizeTeamName(live.away.name);
 
-    const target = allMatches.find(m => {
-      const homeCode = String(m.homeTeam?.code || '').toLowerCase();
-      const awayCode = String(m.awayTeam?.code || '').toLowerCase();
-      const liveHomeCode = String(live.home?.code || '').toLowerCase();
-      const liveAwayCode = String(live.away?.code || '').toLowerCase();
-
-      return (normalizeTeamName(m.homeTeam?.name) === liveHome &&
-        normalizeTeamName(m.awayTeam?.name) === liveAway)
-        || (homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
-    });
+    const target = findMatchingScheduleEntry(live, allMatches);
     if (!target) {
       console.warn('Live score: no matching schedule entry for', live.home.name, 'vs', live.away.name);
       continue;
     }
 
-    const newStatus = live.status === 'FINISHED' ? 'finished'
-      : (live.status === 'IN_PLAY' || live.status === 'PAUSED') ? 'live'
-      : target.status;
+    if (String(live.status || '').toUpperCase() === 'FINISHED') {
+      const scoreChanged = target.homeScore !== (live.score?.home ?? null)
+        || target.awayScore !== (live.score?.away ?? null)
+        || target.status !== 'finished';
 
+      if (scoreChanged) {
+        target.homeScore = live.score?.home ?? null;
+        target.awayScore = live.score?.away ?? null;
+        target.penaltyHomeScore = live.score?.penHome ?? null;
+        target.penaltyAwayScore = live.score?.penAway ?? null;
+        target.status = 'finished';
+        changed = true;
+      }
+      continue;
+    }
+
+    if (!isMeaningfulLiveMatch(live, target)) continue;
+
+    const newStatus = 'live';
     const scoreChanged = target.homeScore !== (live.score?.home ?? null)
       || target.awayScore !== (live.score?.away ?? null)
       || target.status !== newStatus;
@@ -195,7 +239,36 @@ function renderLiveScores(matches) {
     return;
   }
 
-  liveGrid.innerHTML = matches.map(liveScoreCardHtml).join('');
+  // Only display live matches that can be matched to our scheduled
+  // `allMatches` entries. This avoids showing unrelated or noisy
+  // upstream feed results when they don't correspond to our sheet.
+  const visible = matches.filter(m => {
+    if (!m.home || !m.away) return false;
+    const liveHome = normalizeTeamName(m.home.name);
+    const liveAway = normalizeTeamName(m.away.name);
+
+    return allMatches && allMatches.find(sch => {
+      const homeCode = String(sch.homeTeam?.code || '').toLowerCase();
+      const awayCode = String(sch.awayTeam?.code || '').toLowerCase();
+      const liveHomeCode = String(m.home?.code || '').toLowerCase();
+      const liveAwayCode = String(m.away?.code || '').toLowerCase();
+
+      return (normalizeTeamName(sch.homeTeam?.name) === liveHome &&
+              normalizeTeamName(sch.awayTeam?.name) === liveAway)
+        || (homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
+    });
+  });
+
+  if (!visible.length) {
+    // No matches in the feed correspond to our schedule — hide the
+    // live section to avoid confusing users with unrelated results.
+    console.warn('[live] no visible live matches matched to schedule; hiding live section');
+    liveSection.classList.add('hidden');
+    liveGrid.innerHTML = '';
+    return;
+  }
+
+  liveGrid.innerHTML = visible.map(liveScoreCardHtml).join('');
   liveSection.classList.remove('hidden');
 }
 
