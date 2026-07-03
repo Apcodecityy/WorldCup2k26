@@ -294,31 +294,18 @@ function enrichMatch(match) {
   const endTime = new Date(matchDate.getTime() + 120 * 60 * 1000); // 120 min live window
   const hasScore = match.homeScore != null && match.awayScore != null;
 
-  // While the match is within its 120-minute live window, always show "live" —
-  // regardless of whether matches.json says "completed" or "upcoming".
-  if (now >= matchDate && now <= endTime) {
-    return { ...match, _date: matchDate, status: 'live' };
-  }
-
-  // Respect "completed" status from matches.json — don't auto-compute it.
+  // Respect explicit completed status from matches.json first.
   if (match.status === 'completed') {
     return { ...match, _date: matchDate, status: 'finished' };
   }
 
-  // IMPORTANT: only auto-flip to "finished" once kickoff time has passed AND
-  // the match actually has a score. Otherwise a scheduled match whose kickoff
-  // time has simply passed (but whose real-world result hasn't been entered
-  // into matches.json yet) would show an "FT" badge with no score — and it
-  // would disagree with the Knockout Stages page, which only ever considers
-  // a match decided when matches.json explicitly says status: "completed".
-  //
-  // A match past its kickoff+120min window with no score yet gets its own
-  // "pending" status ("Awaiting Result") rather than being lumped in with
-  // "upcoming" — the two are different: "upcoming" hasn't kicked off yet,
-  // "pending" has already been played but the result isn't in matches.json.
+  // Do not force a match to "live" purely by its scheduled time window.
+  // The authoritative live indicator comes from the live feed (`/api/livescore`) which
+  // updates entries via `mergeLiveScoresIntoSchedule()`; that prevents many
+  // matches from appearing live incorrectly when a user opens the page.
   let status = 'upcoming';
   if (now > endTime) status = hasScore ? 'finished' : 'pending';
-  else if (now >= matchDate) status = 'live';
+  else if (now >= matchDate) status = 'upcoming';
 
   return { ...match, _date: matchDate, status };
 }
