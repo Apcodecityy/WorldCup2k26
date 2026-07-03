@@ -169,6 +169,8 @@
     .bk-row.winner { color: var(--text); font-weight: 700; background: var(--accent-glow); }
     .bk-row.loser  { opacity: .5; }
     .bk-row.tbd    { color: var(--text-dimmer); font-style: italic; }
+    .bk-row.new-winner { animation: new-winner-pulse 2s ease-in-out; box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+    @keyframes new-winner-pulse { 0% { transform: translateY(-2px); } 50% { transform: translateY(0); } 100% { transform: translateY(-2px); } }
 
     .bk-flag  { font-size: 14px; flex-shrink: 0; width: 18px; }
     .bk-name  { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -590,7 +592,9 @@
         const isW = w && !isTBD(t) && t.name === w;
         const isL = w && !isTBD(t) && t.name !== w;
         const cls = isTBD(t) ? 'bk-row tbd' : isW ? 'bk-row winner' : isL ? 'bk-row loser' : 'bk-row';
-        return `<div class="${cls}">
+        const teamId = t && (t.id || '') || '';
+        const teamCode = t && (t.code || '') || '';
+        return `<div class="${cls}" data-team-id="${teamId}" data-team-code="${teamCode}">
           <span class="bk-flag">${isTBD(t) ? '🏳️' : (t.flag || '')}</span>
           <span class="bk-name">${isTBD(t) ? (t.name || 'TBD') : t.name}</span>
           <span class="bk-score">${done && score != null ? score : ''}</span>
@@ -619,11 +623,50 @@
       </div>`;
     }
 
+      // Track previous resolved winners to animate advances
+      let _prevResolved = {};
+
+      function markNewWinners(rootId, rawById) {
+        const order = buildBracketOrder(rootId, rawById);
+        const ids = Array.isArray(order) ? order.flat() : [];
+        const { resolveMatch } = buildResolver(rawById);
+        for (const slotId of ids) {
+          const el = document.querySelector(`[data-slot="${slotId}"]`);
+          if (!el) continue;
+          const resolved = resolveMatch(slotId);
+          let winnerKey = null;
+          if (resolved && resolved.status === 'completed') {
+            const winnerName = getWinner(resolved);
+            if (winnerName) {
+              const home = resolved.homeTeam || resolved.home || {};
+              const away = resolved.awayTeam || resolved.away || {};
+              if (home.name === winnerName) winnerKey = home.id || home.code || home.name;
+              else if (away.name === winnerName) winnerKey = away.id || away.code || away.name;
+            }
+          }
+
+          const prev = _prevResolved[slotId];
+          const rowEls = el.querySelectorAll('.bk-row');
+          rowEls.forEach(r => r.classList.remove('new-winner'));
+
+          if (winnerKey && prev && prev !== winnerKey) {
+            // someone new advanced into this slot
+            const winnerRow = Array.from(rowEls).find(r => r.dataset.teamId == winnerKey || r.dataset.teamCode == winnerKey || r.textContent.includes(String(winnerKey)));
+            if (winnerRow) {
+              winnerRow.classList.add('new-winner');
+              setTimeout(() => winnerRow.classList.remove('new-winner'), 5000);
+            }
+          }
+          if (winnerKey) _prevResolved[slotId] = winnerKey;
+        }
+      }
+
     function roundColumn(matches, { mirrored = false, connect = true, merge = true, isFinal = false } = {}) {
       const connectCls = connect ? (mirrored ? 'connect-l' : 'connect-r') : '';
       const slots = matches.map((m, i) => {
         const pairCls = merge ? (i % 2 === 0 ? 'pair-top' : 'pair-bottom') : '';
-        return `<div class="slot ${connectCls} ${pairCls}">
+        const slotId = m && m.id ? m.id : '';
+        return `<div class="slot ${connectCls} ${pairCls}" data-slot="${slotId}">
           <div class="slot-inner">${bracketCard(m, isFinal)}</div>
         </div>`;
       }).join('');
@@ -732,6 +775,8 @@
         }
 
         container.innerHTML = html;
+        // Mark any newly advanced winners (animate)
+        if (finRaw && finRaw.id) markNewWinners(finRaw.id, rawById);
 
       } catch (err) {
         container.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:40px">⚠️ Gagal memuat: ${err.message}</p>`;
