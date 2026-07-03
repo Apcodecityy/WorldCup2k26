@@ -289,7 +289,7 @@ async function fetchMatches() {
 function enrichMatch(match) {
   // Parse datetime: assume Eastern Time (UTC-5 / UTC-4 DST)
   // For real-world use, replace with proper timezone handling (e.g. Luxon)
-  const matchDate = parseMatchDate(match.date, match.time);
+  const matchDate = parseMatchDate(match.date, match.time, match.timezone);
   const now = new Date();
   const endTime = new Date(matchDate.getTime() + 120 * 60 * 1000); // 120 min live window
   const hasScore = match.homeScore != null && match.awayScore != null;
@@ -315,15 +315,32 @@ function enrichMatch(match) {
  * The JSON stores times in ET; we approximate by treating them as local time
  * for broad demo purposes. Adjust offset logic for production.
  */
-function parseMatchDate(dateStr, timeStr) {
+function parseMatchDate(dateStr, timeStr, tz) {
   const [y, m, d] = dateStr.split('-').map(Number);
   const [h, min]  = timeStr.split(':').map(Number);
-  // matches.json stores times in Eastern Time (ET). Account for daylight
-  // savings by assuming DST applies between March–October (covers World
-  // Cup dates). Use UTC-4 during DST, UTC-5 otherwise.
-  const isDSTmonth = (m >= 3 && m <= 10); // rough DST window
-  const ET_OFFSET_HOURS = isDSTmonth ? 4 : 5; // EDT = UTC-4, EST = UTC-5
-  const utcMillis = Date.UTC(y, m - 1, d, h + ET_OFFSET_HOURS, min, 0);
+  // If a timezone label is provided in the match (e.g. 'WITA'), interpret
+  // the stored time as local to that timezone. We compute the UTC instant
+  // by applying an hour adjustment (UTC = local + adj).
+  const tzAdjMap = {
+    'WITA': -8, // local UTC+8 -> UTC = local -8
+    'WIB': -7,  // UTC+7
+    'WIT': -9,  // UTC+9
+  };
+
+  if (tz && typeof tz === 'string') {
+    const key = tz.trim().toUpperCase();
+    if (key in tzAdjMap) {
+      const adj = tzAdjMap[key];
+      const utcMillis = Date.UTC(y, m - 1, d, h + adj, min, 0);
+      return new Date(utcMillis);
+    }
+  }
+
+  // Fallback: assume times are in ET (US Eastern). Use a rough DST window
+  // (Mar–Oct) to choose EDT (UTC-4) or EST (UTC-5).
+  const isDSTmonth = (m >= 3 && m <= 10);
+  const ET_ADJ = isDSTmonth ? 4 : 5; // UTC = ET + adj
+  const utcMillis = Date.UTC(y, m - 1, d, h + ET_ADJ, min, 0);
   return new Date(utcMillis);
 }
 
