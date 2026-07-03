@@ -36,7 +36,7 @@ jobs:
           git diff --cached --quiet || git commit -m 'chore: sync matches.json from live feed'
 
       - name: Push changes
-        uses: ad-m/github-push-action@v0.11.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push origin main
