@@ -331,7 +331,13 @@ function enrichMatch(match) {
 function parseMatchDate(dateStr, timeStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
   const [h, min]  = timeStr.split(':').map(Number);
-  return new Date(y, m - 1, d, h, min, 0);
+  // matches.json stores times in Eastern Time (ET). Account for daylight
+  // savings by assuming DST applies between March–October (covers World
+  // Cup dates). Use UTC-4 during DST, UTC-5 otherwise.
+  const isDSTmonth = (m >= 3 && m <= 10); // rough DST window
+  const ET_OFFSET_HOURS = isDSTmonth ? 4 : 5; // EDT = UTC-4, EST = UTC-5
+  const utcMillis = Date.UTC(y, m - 1, d, h + ET_OFFSET_HOURS, min, 0);
+  return new Date(utcMillis);
 }
 
 // ── FILTERING ──────────────────────────────────────────────────────────────
