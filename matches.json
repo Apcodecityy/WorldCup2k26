@@ -6,7 +6,7 @@
     "Canada",
     "Mexico"
   ],
-  "lastUpdated": "2026-07-02",
+  "lastUpdated": "2026-07-03",
   "matches": [
     {
       "id": 1,
@@ -31,7 +31,9 @@
       "country": "Mexico",
       "status": "completed",
       "homeScore": 2,
-      "awayScore": 0
+      "awayScore": 0,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null
     },
     {
       "id": 2,

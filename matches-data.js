@@ -1,6 +1,5 @@
-// Auto-generated from matches.json so the site works even when opened
-// directly (file://) without a local server, avoiding fetch()/CORS issues.
-// To update match data: edit matches.json, this file is regenerated from it.
+// Auto-generated from matches.json so the site works even when opened directly (file://) without a local server, avoiding fetch()/CORS issues.
+// To update match data: run `node update-matches.js` or use the GitHub Actions workflow.
 window.__MATCHES_DATA__ = {
   "tournament": "FIFA World Cup 2026",
   "edition": "23rd FIFA World Cup",
@@ -9,7 +8,7 @@ window.__MATCHES_DATA__ = {
     "Canada",
     "Mexico"
   ],
-  "lastUpdated": "2026-07-02",
+  "lastUpdated": "2026-07-03",
   "matches": [
     {
       "id": 1,
@@ -34,7 +33,9 @@ window.__MATCHES_DATA__ = {
       "country": "Mexico",
       "status": "completed",
       "homeScore": 2,
-      "awayScore": 0
+      "awayScore": 0,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null
     },
     {
       "id": 2,
@@ -2085,8 +2086,8 @@ window.__MATCHES_DATA__ = {
         "code": "CRO",
         "flag": "🇭🇷"
       },
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 1,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null,
       "note": null,
