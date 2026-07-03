@@ -34,6 +34,10 @@ jobs:
         run: |
           node update-matches.js
 
+      - name: Finalize results (mark scored matches completed)
+        run: |
+          node finalize-results.js
+
       - name: Commit updated files
         run: |
           git config user.name 'github-actions[bot]'
