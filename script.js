@@ -401,11 +401,12 @@ function parseMatchDate(dateStr, timeStr, tz) {
     }
   }
 
-  // Fallback: assume times are in ET (US Eastern). Use a rough DST window
-  // (Mar–Oct) to choose EDT (UTC-4) or EST (UTC-5).
-  const isDSTmonth = (m >= 3 && m <= 10);
-  const ET_ADJ = isDSTmonth ? 4 : 5; // UTC = ET + adj
-  const utcMillis = Date.UTC(y, m - 1, d, h + ET_ADJ, min, 0);
+  // Fallback: assume times are in WITA (Central Indonesia Time, UTC+8)
+  // unless an explicit timezone is provided. This project primarily uses
+  // Indonesian-local times for display, so default to WITA.
+  const DEFAULT_TZ = 'WITA';
+  const defaultAdj = tzAdjMap[DEFAULT_TZ] ?? -8;
+  const utcMillis = Date.UTC(y, m - 1, d, h + defaultAdj, min, 0);
   return new Date(utcMillis);
 }
 
@@ -654,7 +655,7 @@ function renderNextMatch() {
     </div>
   `;
 
-  startCountdown(match._date);
+  startCountdown(match._date, match.id);
 }
 
 // ── COUNTDOWN ──────────────────────────────────────────────────────────────
@@ -662,13 +663,22 @@ function renderNextMatch() {
  * Ticks every second and updates the four countdown units.
  * Clears automatically when the target time passes.
  */
-function startCountdown(targetDate) {
+function startCountdown(targetDate, matchId) {
   if (countdownInterval) clearInterval(countdownInterval);
 
   // Guard: if the target time is already in the past when called,
   // don't start a ticking interval that will immediately recurse.
   if (targetDate - new Date() <= 0) {
     setCountdown(0, 0, 0, 0);
+    // Immediately mark as live when countdown has already passed.
+    if (typeof matchId !== 'undefined') {
+      const m = allMatches.find(x => x.id === matchId);
+      if (m && m.status !== 'finished' && m.status !== 'live') {
+        m.status = 'live';
+        applyFilters();
+        renderNextMatch();
+      }
+    }
     return;
   }
 
@@ -677,8 +687,13 @@ function startCountdown(targetDate) {
     if (diff <= 0) {
       clearInterval(countdownInterval);
       setCountdown(0, 0, 0, 0);
-      // Refresh so status updates to "Live"
-      allMatches = allMatches.map(enrichMatch);
+      // Mark the target match as live when the countdown reaches zero.
+      if (typeof matchId !== 'undefined') {
+        const m = allMatches.find(x => x.id === matchId);
+        if (m && m.status !== 'finished' && m.status !== 'live') {
+          m.status = 'live';
+        }
+      }
       applyFilters();
       renderNextMatch();
       return;
