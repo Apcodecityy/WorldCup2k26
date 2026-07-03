@@ -265,9 +265,11 @@ function renderLiveScores(matches) {
 }
 
 function liveScoreCardHtml(m) {
-  const minuteLabel = m.status === 'PAUSED'
-    ? 'HT'
-    : (typeof m.minute === 'number' ? `${m.minute}'` : 'LIVE');
+  const st = String(m.status || '').toUpperCase();
+  let minuteLabel = 'LIVE';
+  if (st === 'FINISHED' || st === 'FINISH') minuteLabel = 'FT';
+  else if (st === 'PAUSED') minuteLabel = 'HT';
+  else if (typeof m.minute === 'number') minuteLabel = `${m.minute}'`;
 
   const hasPens = m.score.penHome != null && m.score.penAway != null;
   const penNote = hasPens
