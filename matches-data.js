@@ -1,5 +1,4 @@
-// Auto-generated from matches.json so the site works even when opened directly (file://) without a local server, avoiding fetch()/CORS issues.
-// To update match data: run `node update-matches.js` or use the GitHub Actions workflow.
+// Auto-generated from matches.json by finalize-results.js
 window.__MATCHES_DATA__ = {
   "tournament": "FIFA World Cup 2026",
   "edition": "23rd FIFA World Cup",
@@ -2094,7 +2093,7 @@ window.__MATCHES_DATA__ = {
       "stadium": "BMO Field",
       "city": "Toronto",
       "country": "Canada",
-      "status": "upcoming"
+      "status": "completed"
     },
     {
       "id": 84,
