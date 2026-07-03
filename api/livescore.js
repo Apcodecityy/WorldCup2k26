@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
 
   try {
     const upstream = await fetch(
-      `${FOOTBALL_DATA_BASE}/competitions/${encodeURIComponent(competition)}/matches?status=LIVE`,
+      `${FOOTBALL_DATA_BASE}/competitions/${encodeURIComponent(competition)}/matches?status=LIVE,FINISHED`,
       { headers: { 'X-Auth-Token': apiKey } }
     );
 

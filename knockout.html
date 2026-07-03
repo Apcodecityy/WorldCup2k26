@@ -196,7 +196,9 @@
       border-top: 1px solid var(--border-subtle);
       background: var(--bg-surface);
     }
+    .bk-meta { display: flex; align-items: center; gap: 5px; font-size: 9px; color: var(--text-dimmer); padding: 3px 8px 4px; font-family: var(--font-display); letter-spacing: .05em; border-top: 1px solid var(--border-subtle); background: var(--bg-surface); }
     .bk-meta .bk-date { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bk-status { padding: 0 6px; border-radius: 999px; background: rgba(255,255,255,.06); color: var(--text); font-size: 9px; letter-spacing: .05em; text-transform: uppercase; }
     .bk-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .bk-dot.completed { background: var(--finished); }
     .bk-dot.upcoming  { background: var(--border); }
@@ -382,6 +384,7 @@
     }
 
     const isTBD = t => !t || !t.name || t.name === 'TBD' || t.code === 'TBD';
+    let liveScorePollTimer = null;
 
     function getWinner(m) {
       if (!m || m.status !== 'completed') return null;
@@ -451,17 +454,27 @@
           const liveHome = normalizeTeamName(live.home.name);
           const liveAway = normalizeTeamName(live.away.name);
 
-          const target = records.find(m =>
-            normalizeTeamName((m.homeTeam || m.home || {}).name) === liveHome &&
-            normalizeTeamName((m.awayTeam || m.away || {}).name) === liveAway
-          );
+          const target = records.find(m => {
+            const homeCode = String((m.homeTeam || m.home || {}).code || '').toLowerCase();
+            const awayCode = String((m.awayTeam || m.away || {}).code || '').toLowerCase();
+            const liveHomeCode = String(live.home?.code || '').toLowerCase();
+            const liveAwayCode = String(live.away?.code || '').toLowerCase();
+
+            return (normalizeTeamName((m.homeTeam || m.home || {}).name) === liveHome &&
+              normalizeTeamName((m.awayTeam || m.away || {}).name) === liveAway)
+              || (homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
+          });
           if (!target) continue;
 
           target.homeScore = live.score?.home ?? null;
           target.awayScore = live.score?.away ?? null;
           target.penaltyHomeScore = live.score?.penHome ?? null;
           target.penaltyAwayScore = live.score?.penAway ?? null;
-          if (live.status === 'FINISHED') target.status = 'completed';
+
+          const newStatus = live.status === 'FINISHED' ? 'completed'
+            : (live.status === 'IN_PLAY' || live.status === 'PAUSED') ? 'live'
+            : target.status;
+          target.status = newStatus;
         }
       } catch (err) {
         // Live scores are a nice-to-have — a failed/absent endpoint (e.g.
@@ -469,6 +482,12 @@
         // static bracket.
         console.warn('Live score merge (bracket) failed:', err.message);
       }
+    }
+
+    async function startLiveScorePolling() {
+      if (liveScorePollTimer) clearInterval(liveScorePollTimer);
+      await loadBracket();
+      liveScorePollTimer = setInterval(loadBracket, 30000);
     }
 
     function buildResolver(rawById) {
@@ -565,6 +584,7 @@
       const done = m.status === 'completed';
       const w = getWinner(m);
       const dotCls = m.status === 'live' ? 'live' : done ? 'completed' : 'upcoming';
+      const statusLabel = m.status === 'live' ? 'Live' : done ? 'FT' : 'Upcoming';
 
       function row(t, score) {
         const isW = w && !isTBD(t) && t.name === w;
@@ -593,6 +613,7 @@
         <div class="bk-meta">
           <span class="bk-dot ${dotCls}"></span>
           <span class="bk-date">${dateStr}${timeStr}</span>
+          <span class="bk-status">${statusLabel}</span>
         </div>
         ${hasPens ? `<div class="bk-pen-row">${penBadge}</div>` : ''}
       </div>`;
@@ -717,7 +738,7 @@
       }
     }
 
-    loadBracket();
+    startLiveScorePolling();
   </script>
 </body>
 </html>

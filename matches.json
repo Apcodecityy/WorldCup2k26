@@ -2082,8 +2082,8 @@
         "code": "CRO",
         "flag": "🇭🇷"
       },
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 1,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null,
       "note": null,

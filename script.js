@@ -147,10 +147,16 @@ function mergeLiveScoresIntoSchedule(liveMatches) {
     const liveHome = normalizeTeamName(live.home.name);
     const liveAway = normalizeTeamName(live.away.name);
 
-    const target = allMatches.find(m =>
-      normalizeTeamName(m.homeTeam?.name) === liveHome &&
-      normalizeTeamName(m.awayTeam?.name) === liveAway
-    );
+    const target = allMatches.find(m => {
+      const homeCode = String(m.homeTeam?.code || '').toLowerCase();
+      const awayCode = String(m.awayTeam?.code || '').toLowerCase();
+      const liveHomeCode = String(live.home?.code || '').toLowerCase();
+      const liveAwayCode = String(live.away?.code || '').toLowerCase();
+
+      return (normalizeTeamName(m.homeTeam?.name) === liveHome &&
+        normalizeTeamName(m.awayTeam?.name) === liveAway)
+        || (homeCode && awayCode && homeCode === liveHomeCode && awayCode === liveAwayCode);
+    });
     if (!target) {
       console.warn('Live score: no matching schedule entry for', live.home.name, 'vs', live.away.name);
       continue;
