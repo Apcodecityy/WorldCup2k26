@@ -855,6 +855,7 @@ img { display: block; max-width: 100%; }
   background: currentColor;
 }
 .status-upcoming { background: rgba(31,207,174,.12); color: var(--upcoming); }
+.status-pending  { background: var(--gold-glow); color: var(--gold); }
 .status-finished  { background: rgba(107,133,120,.16); color: var(--finished); }
 .status-live      { background: var(--live-glow); color: var(--live); }
 .status-live::before { animation: radar-dot 1.6s ease-in-out infinite; }

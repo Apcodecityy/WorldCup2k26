@@ -409,6 +409,68 @@
      * matches.json — no more manually retyping team names into the
      * next round.
      */
+    // ── LIVE SCORE → BRACKET MERGE ──────────────────────────────────────
+    /**
+     * Same idea as the merge in script.js: /api/livescore and matches.json
+     * are separate sources. This pulls in whatever the live feed reports
+     * and writes it directly into rawById's match records (score + a
+     * "completed" status once FINISHED) *before* buildResolver runs, so a
+     * team that just won live immediately advances into the next round —
+     * no manual matches.json edit needed. Only works once actually
+     * deployed (the endpoint is a Vercel serverless function), so this
+     * fails silently on local/static hosting.
+     */
+    function normalizeTeamName(name) {
+      if (!name) return '';
+      const aliases = {
+        'usa': 'united states', 'us': 'united states',
+        'ivory coast': 'cote divoire', "cote d'ivoire": 'cote divoire',
+        'dr congo': 'congo dr', 'congo dr': 'congo dr',
+        'south korea': 'korea republic', 'korea republic': 'korea republic',
+        'bosnia and herzegovina': 'bosnia', 'bosnia herzegovina': 'bosnia',
+      };
+      const key = name
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim();
+      return aliases[key] || key;
+    }
+
+    async function mergeLiveScoresIntoBracket(rawById) {
+      try {
+        const res = await fetch('/api/livescore');
+        if (!res.ok) return;
+        const data = await res.json();
+        const liveMatches = data.matches || [];
+        if (!liveMatches.length) return;
+
+        const records = Object.values(rawById);
+        for (const live of liveMatches) {
+          if (!live.home || !live.away) continue;
+          const liveHome = normalizeTeamName(live.home.name);
+          const liveAway = normalizeTeamName(live.away.name);
+
+          const target = records.find(m =>
+            normalizeTeamName((m.homeTeam || m.home || {}).name) === liveHome &&
+            normalizeTeamName((m.awayTeam || m.away || {}).name) === liveAway
+          );
+          if (!target) continue;
+
+          target.homeScore = live.score?.home ?? null;
+          target.awayScore = live.score?.away ?? null;
+          target.penaltyHomeScore = live.score?.penHome ?? null;
+          target.penaltyAwayScore = live.score?.penAway ?? null;
+          if (live.status === 'FINISHED') target.status = 'completed';
+        }
+      } catch (err) {
+        // Live scores are a nice-to-have — a failed/absent endpoint (e.g.
+        // when opened locally, not deployed to Vercel) shouldn't break the
+        // static bracket.
+        console.warn('Live score merge (bracket) failed:', err.message);
+      }
+    }
+
     function buildResolver(rawById) {
       const cache = {};
 
@@ -572,6 +634,9 @@
 
         const rawById = {};
         data.matches.forEach(m => { rawById[m.id] = m; });
+
+        await mergeLiveScoresIntoBracket(rawById);
+
         const { resolveMatch } = buildResolver(rawById);
 
         const finRaw = data.matches.find(m => m.stage === 'Final');

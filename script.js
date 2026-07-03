@@ -102,10 +102,83 @@ async function fetchLiveScores() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     renderLiveScores(data.matches || []);
+    mergeLiveScoresIntoSchedule(data.matches || []);
   } catch (err) {
     // Fail silently in the UI — live scores are a nice-to-have, not core
     // functionality, so a hiccup here shouldn't disrupt the schedule.
     console.warn('Live score fetch failed:', err.message);
+  }
+}
+
+// ── LIVE SCORE → SCHEDULE MERGE ─────────────────────────────────────────
+/**
+ * The /api/livescore feed and matches.json are two separate data sources.
+ * This takes whatever the live feed reports (score, penalties, in-play/
+ * finished status) and writes it into the matching entry in `allMatches`,
+ * so the schedule grid, next-match card, and (via the same matches.json
+ * shape) the knockout bracket's "completed" check all reflect real results
+ * — not just the separate "🔴 Live Sekarang" ticker at the top of the page.
+ */
+function normalizeTeamName(name) {
+  if (!name) return '';
+  // A few common name variants between football-data.org and matches.json.
+  const aliases = {
+    'usa': 'united states', 'us': 'united states',
+    'ivory coast': 'cote divoire', "cote d'ivoire": 'cote divoire',
+    'dr congo': 'congo dr', 'congo dr': 'congo dr',
+    'south korea': 'korea republic', 'korea republic': 'korea republic',
+    'bosnia and herzegovina': 'bosnia', 'bosnia herzegovina': 'bosnia',
+  };
+  const key = name
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim();
+  return aliases[key] || key;
+}
+
+function mergeLiveScoresIntoSchedule(liveMatches) {
+  if (!liveMatches.length || !allMatches.length) return;
+
+  let changed = false;
+
+  for (const live of liveMatches) {
+    if (!live.home || !live.away) continue;
+    const liveHome = normalizeTeamName(live.home.name);
+    const liveAway = normalizeTeamName(live.away.name);
+
+    const target = allMatches.find(m =>
+      normalizeTeamName(m.homeTeam?.name) === liveHome &&
+      normalizeTeamName(m.awayTeam?.name) === liveAway
+    );
+    if (!target) {
+      console.warn('Live score: no matching schedule entry for', live.home.name, 'vs', live.away.name);
+      continue;
+    }
+
+    const newStatus = live.status === 'FINISHED' ? 'finished'
+      : (live.status === 'IN_PLAY' || live.status === 'PAUSED') ? 'live'
+      : target.status;
+
+    const scoreChanged = target.homeScore !== (live.score?.home ?? null)
+      || target.awayScore !== (live.score?.away ?? null)
+      || target.status !== newStatus;
+
+    if (scoreChanged) {
+      target.homeScore = live.score?.home ?? null;
+      target.awayScore = live.score?.away ?? null;
+      target.penaltyHomeScore = live.score?.penHome ?? null;
+      target.penaltyAwayScore = live.score?.penAway ?? null;
+      target.status = newStatus;
+      changed = true;
+    }
+  }
+
+  // Re-render only if something actually changed, so we're not re-painting
+  // the grid every 30s for no reason.
+  if (changed) {
+    applyFilters();
+    renderNextMatch();
   }
 }
 
@@ -213,6 +286,7 @@ function enrichMatch(match) {
   const matchDate = parseMatchDate(match.date, match.time);
   const now = new Date();
   const endTime = new Date(matchDate.getTime() + 120 * 60 * 1000); // 120 min live window
+  const hasScore = match.homeScore != null && match.awayScore != null;
 
   // While the match is within its 120-minute live window, always show "live" —
   // regardless of whether matches.json says "completed" or "upcoming".
@@ -225,8 +299,19 @@ function enrichMatch(match) {
     return { ...match, _date: matchDate, status: 'finished' };
   }
 
+  // IMPORTANT: only auto-flip to "finished" once kickoff time has passed AND
+  // the match actually has a score. Otherwise a scheduled match whose kickoff
+  // time has simply passed (but whose real-world result hasn't been entered
+  // into matches.json yet) would show an "FT" badge with no score — and it
+  // would disagree with the Knockout Stages page, which only ever considers
+  // a match decided when matches.json explicitly says status: "completed".
+  //
+  // A match past its kickoff+120min window with no score yet gets its own
+  // "pending" status ("Awaiting Result") rather than being lumped in with
+  // "upcoming" — the two are different: "upcoming" hasn't kicked off yet,
+  // "pending" has already been played but the result isn't in matches.json.
   let status = 'upcoming';
-  if (now > endTime) status = 'finished';
+  if (now > endTime) status = hasScore ? 'finished' : 'pending';
   else if (now >= matchDate) status = 'live';
 
   return { ...match, _date: matchDate, status };
@@ -271,7 +356,8 @@ function applyFilters() {
     if (group !== 'all' && m.group !== group) return false;
     // Status
     if (status === 'finished' && m.status !== 'finished') return false;
-    if (status === 'upcoming' && (m.status === 'finished')) return false;
+    if (status === 'pending' && m.status !== 'pending') return false;
+    if (status === 'upcoming' && (m.status === 'finished' || m.status === 'pending')) return false;
     // Date
     if (date && m.date !== date) return false;
 
@@ -348,8 +434,8 @@ function renderMatches(matches) {
 
   // Sort: finished/live matches first (newest → oldest), then upcoming (soonest → latest)
   const sorted = [...matches].sort((a, b) => {
-    const aDone = a.status === 'finished' || a.status === 'live';
-    const bDone = b.status === 'finished' || b.status === 'live';
+    const aDone = a.status === 'finished' || a.status === 'live' || a.status === 'pending';
+    const bDone = b.status === 'finished' || b.status === 'live' || b.status === 'pending';
 
     if (aDone && bDone) return b._date - a._date; // newest finished first
     if (!aDone && !bDone) return a._date - b._date; // soonest upcoming first
@@ -380,7 +466,7 @@ function buildMatchCard(match, index) {
     ? `<span class="card-group-badge">Group ${match.group}</span>`
     : '';
 
-  const statusHtml = `<span class="status-pill status-${match.status}" role="status">${match.status === 'finished' ? 'FT' : match.status === 'live' ? 'Live' : capitalise(match.status)}</span>`;
+  const statusHtml = `<span class="status-pill status-${match.status}" role="status">${match.status === 'finished' ? 'FT' : match.status === 'live' ? 'Live' : match.status === 'pending' ? 'Awaiting Result' : capitalise(match.status)}</span>`;
 
   const hasScore = (match.status === 'finished' || match.status === 'live')
     && typeof match.homeScore === 'number'
