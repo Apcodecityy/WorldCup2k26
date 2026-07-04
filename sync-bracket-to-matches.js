@@ -105,12 +105,6 @@ function syncBracketToMatches() {
     
     // Process all matches in the main array
     for (const match of data.matches) {
-      // Skip knockout stage matches (R16+) - keep their W##/L## references intact
-      // The bracket logic in knockout.html needs these references to traverse the structure
-      if (match.stage && ['Round of 16', 'Quarter-finals', 'Semi-finals', 'Final', 'Third Place Match'].includes(match.stage)) {
-        continue;
-      }
-
       const homeTeam = match.homeTeam;
       const awayTeam = match.awayTeam;
       
