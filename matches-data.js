@@ -2245,14 +2245,14 @@ window.__MATCHES_DATA__ = {
       "time": "01:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W74"
+        "code": "MAR",
+        "flag": "🇲🇦",
+        "name": "Morocco"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W77"
+        "code": "CAN",
+        "flag": "🇨🇦",
+        "name": "Canada"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2273,14 +2273,14 @@ window.__MATCHES_DATA__ = {
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W73"
+        "code": "PAR",
+        "flag": "🇵🇾",
+        "name": "Paraguay"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W75"
+        "code": "FRA",
+        "flag": "🇫🇷",
+        "name": "France"
       },
       "homeScore": null,
       "awayScore": null,
