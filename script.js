@@ -246,6 +246,8 @@ function renderLiveScores(matches) {
   // our schedule.
   const visible = matches.filter(m => {
     if (!m.home || !m.away) return false;
+    const status = String(m.status || '').toUpperCase();
+    if (status === 'FINISHED' || status === 'FINISH') return false;
     const target = findMatchingScheduleEntry(m, allMatches);
     if (!target) return false;
     return isMeaningfulLiveMatch(m, target);
