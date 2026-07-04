@@ -3266,14 +3266,14 @@ window.__MATCHES_DATA__ = {
         "time": "01:00",
         "timezone": "WITA",
         "homeTeam": {
-          "name": "Canada",
-          "code": "CAN",
-          "flag": "🇨🇦"
-        },
-        "awayTeam": {
           "name": "Morocco",
           "code": "MAR",
           "flag": "🇲🇦"
+        },
+        "awayTeam": {
+          "name": "Canada",
+          "code": "CAN",
+          "flag": "🇨🇦"
         },
         "homeScore": null,
         "awayScore": null,
@@ -3285,14 +3285,14 @@ window.__MATCHES_DATA__ = {
         "country": "USA",
         "status": "upcoming",
         "home": {
-          "name": "Canada",
-          "code": "CAN",
-          "flag": "🇨🇦"
-        },
-        "away": {
           "name": "Morocco",
           "code": "MAR",
           "flag": "🇲🇦"
+        },
+        "away": {
+          "name": "Canada",
+          "code": "CAN",
+          "flag": "🇨🇦"
         }
       },
       {
