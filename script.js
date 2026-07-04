@@ -320,6 +320,90 @@ function formatStageLabel(stage) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// ── KNOCKOUT BRACKET AUTO-RESOLVER ──────────────────────────────────────────
+/**
+ * Round of 16 onward, a team slot in matches.json is either a real team
+ * ({ name: "Canada", ... }) or a placeholder referencing another match's
+ * outcome: { name: "W89" } = winner of match id 89, { name: "L101" } =
+ * loser of match id 101 (used for the 3rd place match). This mirrors the
+ * exact resolver used by knockout.html's bracket so the "Next Match" card
+ * and the schedule grid always show the same real team names as soon as
+ * they're known there — never the raw "W89"/"L101" reference codes.
+ *
+ * A slot that genuinely can't be resolved yet (its feeder match hasn't
+ * been played) is normalised to a clean { name: 'TBD', code: 'TBD' }
+ * placeholder instead of leaking the raw reference code into the UI.
+ */
+function isTBDTeam(t) {
+  return !t || !t.name || t.name === 'TBD' || t.code === 'TBD';
+}
+
+function isMatchTBD(m) {
+  return isTBDTeam(m.homeTeam) || isTBDTeam(m.awayTeam);
+}
+
+function getBracketWinnerName(m) {
+  if (!m || m.status !== 'completed') return null;
+  const hs = m.homeScore, as_ = m.awayScore;
+  if (hs == null || as_ == null) return null;
+  const ph = m.penaltyHomeScore, pa = m.penaltyAwayScore;
+  const home = m.homeTeam || {};
+  const away = m.awayTeam || {};
+  if (hs > as_) return home.name;
+  if (as_ > hs) return away.name;
+  if (ph != null && pa != null) return ph > pa ? home.name : away.name;
+  return null; // level with no penalty result recorded yet
+}
+
+function buildBracketResolver(rawById) {
+  const cache = {};
+
+  function resolveTeam(team) {
+    if (!team || !team.name) return { name: 'TBD', code: 'TBD', flag: '🏳️' };
+    const ref = /^([WL])(\d+)$/.exec(team.name);
+    if (!ref) return team; // already a real team (e.g. Group Stage / Round of 32)
+
+    const [, kind, idStr] = ref;
+    const src = resolveMatch(parseInt(idStr, 10));
+    if (!src) return { name: 'TBD', code: 'TBD', flag: '🏳️' };
+
+    const winnerName = getBracketWinnerName(src);
+    if (!winnerName) return { name: 'TBD', code: 'TBD', flag: '🏳️' }; // source not decided yet
+
+    const homeIsWinner = src.homeTeam.name === winnerName;
+    if (kind === 'W') return homeIsWinner ? src.homeTeam : src.awayTeam;
+    return homeIsWinner ? src.awayTeam : src.homeTeam; // kind === 'L'
+  }
+
+  function resolveMatch(id) {
+    if (cache[id]) return cache[id];
+    const raw = rawById[id];
+    if (!raw) return null;
+    cache[id] = raw; // guard against cyclic references while resolving
+    const resolved = {
+      ...raw,
+      homeTeam: resolveTeam(raw.homeTeam),
+      awayTeam: resolveTeam(raw.awayTeam),
+    };
+    cache[id] = resolved;
+    return resolved;
+  }
+
+  return { resolveMatch };
+}
+
+/**
+ * Resolves every match's team slots (Group Stage entries pass through
+ * unchanged since they have no W##/L## references) and returns a new
+ * array in the same order/shape as the input, ready for enrichMatch().
+ */
+function resolveKnockoutMatches(matches) {
+  const rawById = {};
+  matches.forEach(m => { rawById[m.id] = m; });
+  const { resolveMatch } = buildBracketResolver(rawById);
+  return matches.map(m => resolveMatch(m.id));
+}
+
 // ── FETCH DATA ─────────────────────────────────────────────────────────────
 /**
  * Loads matches.json (same folder) and initialises the page.
@@ -338,7 +422,12 @@ async function fetchMatches() {
       data = await res.json();
     }
 
-    allMatches = data.matches.map(enrichMatch);
+    // Resolve Round of 16+ placeholder team refs (W89, L101, ...) into real
+    // team names using the same logic as the knockout bracket page, so the
+    // schedule and next-match card never show raw reference codes.
+    const resolvedMatches = resolveKnockoutMatches(data.matches);
+
+    allMatches = resolvedMatches.map(enrichMatch);
     allStandings = data.standings || {};
 
     // Show last-updated date from JSON
@@ -590,7 +679,18 @@ function buildMatchCard(match, index) {
     ? `<span class="card-group-badge">Group ${match.group}</span>`
     : '';
 
-  const statusHtml = `<span class="status-pill status-${match.status}" role="status">${match.status === 'finished' ? 'FT' : match.status === 'live' ? 'Live' : match.status === 'pending' ? 'Awaiting Result' : capitalise(match.status)}</span>`;
+  // A knockout match whose teams haven't been decided yet (still waiting on
+  // an earlier round) gets its own label instead of a plain "Upcoming" pill,
+  // so it's clear it's pending the bracket rather than just early on the
+  // calendar.
+  const isTBD = (match.status === 'upcoming' || match.status === 'live') && isMatchTBD(match);
+  const statusLabel = isTBD
+    ? 'Awaiting Bracket'
+    : match.status === 'finished' ? 'FT'
+    : match.status === 'live' ? 'Live'
+    : match.status === 'pending' ? 'Awaiting Result'
+    : capitalise(match.status);
+  const statusHtml = `<span class="status-pill status-${isTBD ? 'pending' : match.status}" role="status">${statusLabel}</span>`;
 
   const hasScore = (match.status === 'finished' || match.status === 'live')
     && typeof match.homeScore === 'number'
@@ -665,7 +765,11 @@ function buildMatchCard(match, index) {
 function renderNextMatch() {
   const now = new Date();
   const upcoming = allMatches
-    .filter(m => m.status === 'upcoming' || m.status === 'live')
+    // Skip matches whose teams aren't decided yet (e.g. a Quarter-final
+    // still waiting on Round of 16 results) — the "Next Match" hero card
+    // should only ever spotlight a match with two known teams, taken from
+    // the resolved knockout bracket.
+    .filter(m => (m.status === 'upcoming' || m.status === 'live') && !isMatchTBD(m))
     .sort((a, b) => a._date - b._date);
 
   if (upcoming.length === 0) {
