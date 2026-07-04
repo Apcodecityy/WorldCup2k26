@@ -244,7 +244,7 @@ function renderLiveScores(matches) {
   // or a reported score). This prevents noisy upstream results from
   // appearing in the live ticker when they aren't actually in-play for
   // our schedule.
-  const visible = matches.filter(m => {
+  let visible = matches.filter(m => {
     if (!m.home || !m.away) return false;
     const status = String(m.status || '').toUpperCase();
     if (status === 'FINISHED' || status === 'FINISH') return false;
@@ -252,6 +252,14 @@ function renderLiveScores(matches) {
     if (!target) return false;
     return isMeaningfulLiveMatch(m, target);
   });
+
+  if (!visible.length) {
+    const fallback = buildScheduleLiveMatches();
+    if (fallback.length) {
+      visible = fallback;
+      console.warn('[live] no API live matches; falling back to schedule live entries');
+    }
+  }
 
   if (!visible.length) {
     // No matches in the feed correspond to our schedule — hide the
@@ -374,9 +382,39 @@ function enrichMatch(match) {
   // matches from appearing live incorrectly when a user opens the page.
   let status = 'upcoming';
   if (now > endTime) status = hasScore ? 'finished' : 'pending';
-  else if (now >= matchDate) status = 'upcoming';
+  else if (now >= matchDate) status = 'live';
 
   return { ...match, _date: matchDate, status };
+}
+
+function buildScheduleLiveMatches() {
+  if (!allMatches.length) return [];
+
+  return allMatches
+    .filter((m) => m.status === 'live')
+    .map((m) => ({
+      id: m.id,
+      status: 'IN_PLAY',
+      minute: null,
+      utcDate: m._date ? m._date.toISOString() : null,
+      stage: m.stage,
+      home: {
+        name: m.homeTeam?.name || '',
+        code: m.homeTeam?.code || '',
+        crest: null,
+      },
+      away: {
+        name: m.awayTeam?.name || '',
+        code: m.awayTeam?.code || '',
+        crest: null,
+      },
+      score: {
+        home: m.homeScore ?? 0,
+        away: m.awayScore ?? 0,
+        penHome: m.penaltyHomeScore ?? null,
+        penAway: m.penaltyAwayScore ?? null,
+      },
+    }));
 }
 
 /**
