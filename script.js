@@ -657,6 +657,48 @@ function buildMatchCard(match, index) {
   return article;
 }
 
+// ── RESOLVE BRACKET PLACEHOLDERS ──────────────────────────────────────────
+/**
+ * Resolves W##/L## placeholder references to actual team data
+ */
+function resolveTeamName(team, matchId) {
+  if (!team || !team.name) return 'TBD';
+  const ref = /^([WL])(\d+)$/.exec(team.name);
+  if (!ref) return team.name; // Not a placeholder
+
+  const [, kind, srcId] = ref;
+  const srcMatch = allMatches.find(m => m.id === parseInt(srcId, 10));
+  if (!srcMatch) return 'TBD';
+
+  if (srcMatch.status === 'completed' || srcMatch.status === 'live') {
+    const homeWon = (srcMatch.homeScore || 0) > (srcMatch.awayScore || 0);
+    const winner = homeWon ? srcMatch.homeTeam : srcMatch.awayTeam;
+    const loser = homeWon ? srcMatch.awayTeam : srcMatch.homeTeam;
+    return kind === 'W' ? winner.name : loser.name;
+  }
+  // For upcoming matches, default to home for W, away for L
+  return kind === 'W' ? srcMatch.homeTeam.name : srcMatch.awayTeam.name;
+}
+
+function resolveTeam(team, matchId) {
+  if (!team || !team.name) return { name: 'TBD', code: 'TBD', flag: '🏳️' };
+  const ref = /^([WL])(\d+)$/.exec(team.name);
+  if (!ref) return team; // Not a placeholder
+
+  const [, kind, srcId] = ref;
+  const srcMatch = allMatches.find(m => m.id === parseInt(srcId, 10));
+  if (!srcMatch) return { name: 'TBD', code: 'TBD', flag: '🏳️' };
+
+  if (srcMatch.status === 'completed' || srcMatch.status === 'live') {
+    const homeWon = (srcMatch.homeScore || 0) > (srcMatch.awayScore || 0);
+    const winner = homeWon ? srcMatch.homeTeam : srcMatch.awayTeam;
+    const loser = homeWon ? srcMatch.awayTeam : srcMatch.homeTeam;
+    return kind === 'W' ? winner : loser;
+  }
+  // For upcoming matches, default to home for W, away for L
+  return kind === 'W' ? srcMatch.homeTeam : srcMatch.awayTeam;
+}
+
 // ── NEXT MATCH FEATURED CARD ───────────────────────────────────────────────
 /**
  * Finds the earliest upcoming (or live) match and renders it in the hero card.
