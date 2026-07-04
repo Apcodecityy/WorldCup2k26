@@ -1,5 +1,4 @@
 // Auto-generated from matches.json so the site works even when opened directly (file://) without a local server, avoiding fetch()/CORS issues.
-// To update match data: run `node update-matches.js` or use the GitHub Actions workflow.
 window.__MATCHES_DATA__ = {
   "tournament": "FIFA World Cup 2026",
   "edition": "23rd FIFA World Cup",
@@ -2301,14 +2300,14 @@ window.__MATCHES_DATA__ = {
       "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W76"
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W78"
+        "name": "France",
+        "code": "FRA",
+        "flag": "🇫🇷"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2329,14 +2328,14 @@ window.__MATCHES_DATA__ = {
       "time": "08:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W79",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Mexico",
+        "code": "MEX",
+        "flag": "🇲🇽"
       },
       "awayTeam": {
-        "name": "W80",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "England",
+        "code": "ENG",
+        "flag": "🏴"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2357,14 +2356,14 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W83"
+        "name": "Spain",
+        "code": "ESP",
+        "flag": "🇪🇸"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W84"
+        "name": "Portugal",
+        "code": "POR",
+        "flag": "🇵🇹"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2385,14 +2384,14 @@ window.__MATCHES_DATA__ = {
       "time": "08:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W81"
+        "name": "Belgium",
+        "code": "BEL",
+        "flag": "🇧🇪"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W82"
+        "name": "USA",
+        "code": "USA",
+        "flag": "🇺🇸"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2413,14 +2412,14 @@ window.__MATCHES_DATA__ = {
       "time": "00:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W86"
+        "name": "Australia",
+        "code": "AUS",
+        "flag": "🇦🇺"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W88"
+        "name": "Colombia",
+        "code": "COL",
+        "flag": "🇨🇴"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2441,14 +2440,14 @@ window.__MATCHES_DATA__ = {
       "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W85"
+        "name": "Switzerland",
+        "code": "SUI",
+        "flag": "🇨🇭"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W87"
+        "name": "Argentina",
+        "code": "ARG",
+        "flag": "🇦🇷"
       },
       "homeScore": null,
       "awayScore": null,
@@ -2469,14 +2468,14 @@ window.__MATCHES_DATA__ = {
       "time": "04:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W89",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦"
       },
       "awayTeam": {
-        "name": "W90",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Paraguay",
+        "code": "PAR",
+        "flag": "🇵🇾"
       },
       "stadium": "Gillette Stadium",
       "city": "Boston",
@@ -2492,14 +2491,14 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
+        "name": "TBD",
         "code": "TBD",
-        "flag": "🏳️",
-        "name": "W93"
+        "flag": "🏳️"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W94"
+        "name": "USA",
+        "code": "USA",
+        "flag": "🇺🇸"
       },
       "stadium": "SoFi Stadium",
       "city": "Los Angeles",
@@ -2515,14 +2514,14 @@ window.__MATCHES_DATA__ = {
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W91"
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷"
       },
       "awayTeam": {
-        "code": "TBD",
-        "flag": "🏳️",
-        "name": "W92"
+        "name": "Mexico",
+        "code": "MEX",
+        "flag": "🇲🇽"
       },
       "stadium": "Hard Rock Stadium",
       "city": "Miami",
@@ -2538,12 +2537,12 @@ window.__MATCHES_DATA__ = {
       "time": "09:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W95",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },
       "awayTeam": {
-        "name": "W96",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },
@@ -2561,14 +2560,14 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W97",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦"
       },
       "awayTeam": {
-        "name": "W98",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷"
       },
       "stadium": "AT&T Stadium",
       "city": "Dallas",
@@ -2584,12 +2583,12 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W99",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },
       "awayTeam": {
-        "name": "W100",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },
@@ -2607,12 +2606,12 @@ window.__MATCHES_DATA__ = {
       "time": "05:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "L101",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷"
       },
       "awayTeam": {
-        "name": "L102",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },
@@ -2630,12 +2629,12 @@ window.__MATCHES_DATA__ = {
       "time": "03:00",
       "timezone": "WITA",
       "homeTeam": {
-        "name": "W101",
-        "code": "TBD",
-        "flag": "🏳️"
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦"
       },
       "awayTeam": {
-        "name": "W102",
+        "name": "TBD",
         "code": "TBD",
         "flag": "🏳️"
       },

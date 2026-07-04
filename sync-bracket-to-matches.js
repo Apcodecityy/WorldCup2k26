@@ -38,7 +38,7 @@ function resolveTeam(placeholder, bracket, resolvedCache = {}) {
   let srcMatch = null;
   
   // Search in bracket
-  for (const stage of ['r16', 'qf', 'sf']) {
+  for (const stage of ['r32', 'r16', 'qf', 'sf']) {
     if (bracket[stage]) {
       srcMatch = bracket[stage].find(m => m.id === matchId);
       if (srcMatch) break;

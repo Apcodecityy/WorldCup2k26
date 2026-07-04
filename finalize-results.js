@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { syncBracketToMatches } = require('./sync-bracket-to-matches');
 
 const MATCHES_FILE = path.resolve(__dirname, 'matches.json');
 const DATA_FILE = path.resolve(__dirname, 'matches-data.js');
@@ -37,6 +38,10 @@ function run() {
 
 try {
   run();
+  // Sync bracket placeholders to matches after finalizing results
+  console.log('\n🔄 Syncing bracket data to matches...');
+  syncBracketToMatches();
+  console.log('✅ Bracket sync complete\n');
 } catch (err) {
   console.error('[finalize] error:', err && err.message ? err.message : err);
   process.exit(1);
