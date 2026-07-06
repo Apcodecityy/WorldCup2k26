@@ -8,7 +8,7 @@ window.__MATCHES_DATA__ = {
     "Canada",
     "Mexico"
   ],
-  "lastUpdated": "2026-07-05",
+  "lastUpdated": "2026-07-06",
   "matches": [
     {
       "id": 1,
@@ -32,8 +32,8 @@ window.__MATCHES_DATA__ = {
       "city": "Mexico City",
       "country": "Mexico",
       "status": "completed",
-      "homeScore": 1,
-      "awayScore": 2,
+      "homeScore": 2,
+      "awayScore": 3,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null
     },
