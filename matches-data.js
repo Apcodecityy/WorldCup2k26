@@ -32,10 +32,10 @@ window.__MATCHES_DATA__ = {
       "city": "Mexico City",
       "country": "Mexico",
       "status": "completed",
-      "homeScore": 4,
-      "awayScore": 3,
-      "penaltyHomeScore": 4,
-      "penaltyAwayScore": 3
+      "homeScore": 2,
+      "awayScore": 0,
+      "penaltyHomeScore": null,
+      "penaltyAwayScore": null
     },
     {
       "id": 2,
