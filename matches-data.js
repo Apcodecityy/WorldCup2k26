@@ -33,7 +33,7 @@ window.__MATCHES_DATA__ = {
       "country": "Mexico",
       "status": "completed",
       "homeScore": 2,
-      "awayScore": 0,
+      "awayScore": 1,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null
     },
