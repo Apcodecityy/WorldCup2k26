@@ -30,8 +30,8 @@
       "city": "Mexico City",
       "country": "Mexico",
       "status": "completed",
-      "homeScore": 4,
-      "awayScore": 6,
+      "homeScore": 0,
+      "awayScore": 0,
       "penaltyHomeScore": null,
       "penaltyAwayScore": null
     },
