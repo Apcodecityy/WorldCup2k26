@@ -8,7 +8,7 @@ window.__MATCHES_DATA__ = {
     "Canada",
     "Mexico"
   ],
-  "lastUpdated": "2026-11-07",
+  "lastUpdated": "2026-11-08",
   "matches": [
     {
       "id": 1,
